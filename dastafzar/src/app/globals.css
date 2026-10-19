@@ -83,3 +83,16 @@ table.admin-table td,table.admin-table th{border-bottom:1px solid var(--line);pa
 .faq-a>div{overflow:hidden}
 .faq-a p{color:var(--ink2);line-height:1.9;margin:0;padding:0 18px 16px}
 @media(prefers-reduced-motion:reduce){.faq-a,.faq-chevron{transition:none}}
+/* Interactive Jalali calendar */
+.pg-btn{min-width:44px;min-height:44px;padding:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.cal-title{font-size:19px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin-top:14px}
+.cal-wd{text-align:center;font-size:11.5px;color:var(--ink2);padding:5px 0}
+.cal-day{position:relative;min-height:46px;border:1px solid transparent;background:var(--bg);color:var(--ink);border-radius:12px;font:inherit;font-size:15.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 150ms var(--ease-out),transform 100ms var(--ease-out)}
+.cal-day:hover{border-color:var(--line)}
+.cal-day:active{transform:scale(.95)}
+.cal-day.today{border-color:var(--primary);font-weight:800;color:var(--primary-ink)}
+.cal-day.sel{background:var(--primary);color:#fff;font-weight:800}
+.cal-dot{position:absolute;bottom:6px;width:5px;height:5px;border-radius:50%;background:#E2720C}
+.cal-day.sel .cal-dot{background:#FFD9A8}

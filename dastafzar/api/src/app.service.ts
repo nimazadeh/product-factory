@@ -4,6 +4,7 @@ import * as bcrypt from "bcryptjs";
 import { PrismaService } from "./prisma.service";
 
 const TOOLS = [
+  { slug: "jalali-calendar", title: "تقویم شمسی تعاملی" },
   { slug: "date-converter", title: "مبدل تاریخ" },
   { slug: "age-calculator", title: "محاسبه سن" },
   { slug: "date-difference", title: "فاصله دو تاریخ" },

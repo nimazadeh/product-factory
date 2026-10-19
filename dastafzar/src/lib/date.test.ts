@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { ageFrom, diffDays, gregorianToJalali, isValidJalali, jalaliToGregorian, nextNowruz } from "./date";
+import { ageFrom, diffDays, firstColumnOfMonth, gregorianToJalali, isValidJalali, jalaliToGregorian, monthLength, nextNowruz } from "./date";
 
 describe("تبدیل تاریخ", () => {
   it("۲۷ مهر ۱۴۰۵ = ۱۹ اکتبر ۲۰۲۶", () => {
@@ -36,5 +36,14 @@ describe("فاصله و نوروز", () => {
     const n = nextNowruz(new Date(2026, 9, 19));
     expect(n.jalaliYear).toBe(1406);
     expect(n.daysLeft).toBeGreaterThan(100);
+  });
+});
+
+describe("تقویم ماهانه", () => {
+  it("مهر ۱۴۰۵ از چهارشنبه شروع می‌شود و ۳۰ روزه است", () => {
+    // ۱ مهر ۱۴۰۵ = ۲۳ سپتامبر ۲۰۲۶ = چهارشنبه (ستون ۴ با شنبه=۰)
+    expect(firstColumnOfMonth(1405, 7)).toBe(4);
+    expect(monthLength(1405, 7)).toBe(30);
+    expect(monthLength(1405, 1)).toBe(31);
   });
 });

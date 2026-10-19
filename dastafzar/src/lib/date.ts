@@ -50,3 +50,13 @@ export function nextNowruz(from = new Date()): { jalaliYear: number; date: Date;
 
 export const WEEKDAY_FA = (g: GDate) =>
   new Intl.DateTimeFormat("fa-IR", { weekday: "long" }).format(new Date(g.gy, g.gm - 1, g.gd));
+
+/** Column (0=شنبه … 6=جمعه) of the 1st day of a Jalali month — for calendar grids. */
+export function firstColumnOfMonth(jy: number, jm: number): number {
+  const g = jalaliToGregorian({ jy, jm, jd: 1 });
+  const jsDay = new Date(g.gy, g.gm - 1, g.gd).getDay(); // 0=Sun … 6=Sat
+  return (jsDay + 1) % 7;
+}
+export const monthLength = (jy: number, jm: number) => jalaaliMonthLength(jy, jm);
+export const MONTHS_FA = ["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر","دی","بهمن","اسفند"];
+export const WEEKDAYS_FA = ["شنبه","یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه"];
