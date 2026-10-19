@@ -15,7 +15,8 @@ a{color:inherit}
 .hero-note{color:var(--ink2);font-size:13.5px;margin-top:14px}
 .converter{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 12px 36px rgba(22,33,28,.07);text-align:start}
 .conv-fields{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px}
-.conv-field{display:grid;gap:7px;font-size:13.5px;color:var(--ink2);min-width:0}
+.conv-field{display:grid;gap:7px;font-size:13.5px;color:var(--ink2);min-width:0;text-align:center;justify-items:stretch}
+.conv-field>span{text-align:center}
 .conv-field input{width:100%;min-width:0;min-height:52px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:19px;text-align:center;padding:8px}
 .conv-field input:focus{outline:2px solid var(--primary);outline-offset:1px}
 .conv-result{margin-top:16px;background:var(--accent);border-radius:12px;padding:14px 16px;font-size:16.5px;text-align:center}
