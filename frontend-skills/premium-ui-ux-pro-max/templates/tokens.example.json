@@ -1,0 +1,12 @@
+{
+  "primitive": {
+    "color": { "green-600": "#0B6B4F", "green-800": "#084C38", "ink-900": "#16211C", "paper": "#F6F7F5", "orange-600": "#C2410C" },
+    "space": { "1": "4px", "2": "8px", "4": "16px", "6": "24px" },
+    "radius": { "s": "10px", "m": "14px", "l": "20px" }
+  },
+  "semantic": {
+    "color-primary": "{color.green-600}", "color-primary-ink": "{color.green-800}",
+    "color-ink": "{color.ink-900}", "color-bg": "{color.paper}", "color-expense": "{color.orange-600}"
+  },
+  "themes": { "dark": { "color-bg": "#101613", "color-ink": "#EDF2EE" } }
+}

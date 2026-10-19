@@ -1,0 +1,36 @@
+# dependencies & build output (rebuildable — never in git)
+node_modules/
+dist/
+build/
+out/
+.next/
+.cache/
+coverage/
+test-results/
+playwright-report/
+e2e/report/
+
+# local deliverables (source is the truth; ZIPs go to GitHub Releases, not git history)
+_archive/
+
+# environment & secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# temp research
+image-search/
+
+# home-dir tool caches (workspace root is $HOME)
+.npm/
+.cache/
+.local/
+.config/
+.sudo_as_admin_successful

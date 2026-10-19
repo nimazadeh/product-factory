@@ -1,0 +1,25 @@
+# DESIGN.md — [نام پروژه]
+<!-- این فایل را در ریشه هر پروژه کپی کن و با UI UX Pro Max پر کن. منبع حقیقت طراحی پروژه است. -->
+
+## Product
+- نوع محصول (از 192 پروفایل UI UX Pro Max): …
+- کاربر اصلی و کارِ اصلی (Primary Job / Primary Action): …
+- جهت هنری (Aesthetic Direction): …
+- Anti-patterns ممنوع در این پروژه: …
+
+## Tokens
+- رنگ: primary / secondary / accent / surface / text / success / warning / error (+ حالت dark)
+- تایپوگرافی: فونت heading / body (font pairing)، scale: 12/14/16/20/24/32/40
+- Spacing: مبنای 4px — 4/8/12/16/24/32/48/64
+- Radius: sm/md/lg — Shadow: sm/md/lg
+- Breakpoints: 320 / 768 / 1024 / 1440
+
+## Components & Patterns
+- کامپوننت‌های پایه (Button/Input/Dialog/Table…): از shadcn/ui + توکن‌های بالا
+- الگوی ناوبری موبایل / دسکتاپ: …
+- الگوی فرم، جدول، کارت، empty-state: …
+
+## Rules
+- فقط از همین توکن‌ها؛ افزودن رنگ/فونت جدید = اول آپدیت این فایل
+- Touch ≥44px · body ≥16px · کنتراست WCAG AA · motion فقط با reduced-motion-safe
+- RTL/LTR: … · Dark mode: …

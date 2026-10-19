@@ -1,0 +1,6 @@
+import { Lock, SearchX, TriangleAlert, Wallet } from "lucide-react";
+export function Skeleton(){ return <div className="stack" role="status" aria-busy="true" aria-label="در حال بارگذاری"><div className="sk sk-hero"/><div className="grid2"><div className="sk"/><div className="sk"/></div><div className="sk sk-tall"/></div>; }
+export function Empty({title,body,action}:{title:string;body:string;action?:React.ReactNode}){ return <div className="empty"><Wallet aria-hidden/><h3>{title}</h3><p>{body}</p>{action}</div>; }
+export function EmptySearch(){ return <div className="empty"><SearchX aria-hidden/><h3>تراکنشی پیدا نشد</h3><p>عبارت جستجو یا فیلتر دسته‌بندی را تغییر دهید.</p></div>; }
+export function ErrorBox({onRetry}:{onRetry():void}){ return <div className="empty error" role="alert"><TriangleAlert aria-hidden/><h3>داده‌ها بارگذاری نشد</h3><p>حافظه محلی مرورگر در دسترس نیست. دوباره تلاش کنید؛ تراکنش‌های شما حذف نشده‌اند.</p><button className="btn-primary sm" onClick={onRetry}>تلاش دوباره</button></div>; }
+export function Locked({onUnlock}:{onUnlock():void}){ return <main className="locked"><Lock aria-hidden size={40}/><h1>جیبتو قفل است</h1><p>برای حفظ حریم خصوصی، اطلاعات مالی شما پنهان شده است.</p><button className="btn-primary" onClick={onUnlock}>باز کردن داشبورد</button></main>; }
