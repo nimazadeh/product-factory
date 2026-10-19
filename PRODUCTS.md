@@ -1,7 +1,7 @@
 # 📦 Product Registry — دفتر ثبت محصولات این Workspace
 
 > قانون کار بلندمدت (از ۲۰۲۶-۱۰-۱۸): هر محصول که تمام شد → آرشیو ZIP → حذف پوشه منبع.
-> **قانون ZIP واحد (از ۲۰۲۶-۱۰-۱۸): برای هر محصول همیشه فقط یک فایل `_archive/<product>-latest.zip` وجود دارد؛ نسخه جدید جایگزین قبلی می‌شود و ZIPهای قدیمی خودکار حذف می‌شوند. کاربر همان فایل را دانلود می‌کند.**
+> **قانون ZIP واحد + نسخه روی نام (از ۲۰۲۶-۱۰-۱۹ — جایگزین قانون قبلی): برای هر محصول همیشه فقط یک فایل `_archive/<product>-v<semver>.zip` وجود دارد؛ نسخه دقیق SemVer روی نام فایل است، بعد از هر تغییر بازسازی می‌شود و ZIP قبلی خودکار حذف می‌شود.**
 > برگرداندن: `_system/restore-product.sh _archive/<product>-latest.zip` — بعد `npm install` و ادامه توسعه.
 > آرشیو هرگز شامل `node_modules/dist/build` نیست (قابل بازسازی‌اند و اصلاً در Snapshot ذخیره نمی‌شوند).
 
@@ -18,6 +18,6 @@
 توسعه → تست (Verification Gate) → archive-product.sh <dir> <ver> --delete → فقط ZIP + یک ردیف در این فایل
 بازگشت: restore-product.sh → npm install --legacy-peer-deps → فیتچر جدید → آرشیو نسخه بعد
 ```
-| finance-dashboard | v2.2 | 2026-10-19 | 2.9M | `3ba98dceb1b286f3bb4310233fc7fbcca027208d0e823fe9934439e044756ad4` | zipped — ready to download (`_archive/finance-dashboard-latest.zip`) |
+| finance-dashboard | v2.2 | 2026-10-19 | 2.9M | `3ba98dceb1b286f3bb4310233fc7fbcca027208d0e823fe9934439e044756ad4` | zipped — ready to download (`_archive/finance-dashboard-v2.2.0.zip`) |
 
-| dastafzar (دست‌افزار) | 0.1 | 2026-10-19 | — | — | در توسعه — فاز ۱ کامل، منتظر دامنه/لانچ |
+| dastafzar | v0.2.0 | 2026-10-19 | 900K | `53310c414b5f1ba6a5a58caa5c166a13a0c6582312eb2747a1ef143520a6432b` | zipped — ready to download (`_archive/dastafzar-v0.2.0.zip`) — rebuilt after every change |
