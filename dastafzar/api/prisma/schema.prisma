@@ -1,0 +1,61 @@
+// Dastafzar API — Prisma schema (PostgreSQL)
+// Control plane for the whole product: usage stats, occasions, tools, content, feedback.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+/// Anonymous usage events from the public tools (no personal data).
+model ToolEvent {
+  id        String   @id @default(cuid())
+  tool      String // date-converter | age-calculator | date-difference | nowruz-countdown
+  action    String // view | use | share | copy
+  createdAt DateTime @default(now())
+
+  @@index([tool, createdAt])
+}
+
+/// Manageable occasions shown by countdown tools (Nowruz, Yalda, مهرگان…).
+model Occasion {
+  id        String  @id @default(cuid())
+  title     String
+  month     Int // Jalali month 1-12
+  day       Int // Jalali day
+  enabled   Boolean @default(true)
+  createdAt DateTime @default(now())
+}
+
+/// Feature flags for public tools — turn a tool off without a deploy.
+model ToolSetting {
+  slug    String  @id // matches ToolEvent.tool
+  title   String
+  enabled Boolean @default(true)
+}
+
+/// Single-row site settings (announcement bar, maintenance mode…).
+model SiteSetting {
+  key   String @id
+  value String
+}
+
+/// Contact / feedback messages from the public site.
+model Feedback {
+  id        String   @id @default(cuid())
+  name      String?
+  contact   String?
+  message   String
+  handled   Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

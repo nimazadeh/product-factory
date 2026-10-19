@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
+// Browser never talks to the API port directly: /api-backend/* is proxied to NestJS.
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: false,
-
+  async rewrites() {
+    return [{ source: "/api-backend/:path*", destination: `${process.env.API_INTERNAL ?? "http://localhost:4000"}/api/:path*` }];
+  },
 };
-
 export default nextConfig;

@@ -55,3 +55,21 @@ a{color:inherit}
 .copy-btn{margin-top:12px;min-height:44px;padding:10px 22px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--primary-ink);font:inherit;font-weight:700;cursor:pointer}
 
 html,body{overflow-x:clip}
+/* Admin dashboard */
+.admin-wrap{max-width:1080px;margin:24px auto 0}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin:18px 0}
+.stat-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.stat-card strong{font-size:27px;display:block;color:var(--primary-ink)}
+.admin-panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px}
+.admin-panel h2{margin:0 0 14px;font-size:19px}
+.admin-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.admin-row:last-child{border-bottom:0}
+.switch{min-width:52px;min-height:32px;border-radius:99px;border:1px solid var(--line);background:var(--bg);cursor:pointer;font:inherit;font-size:12.5px;padding:4px 10px}
+.switch.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.login-box{max-width:400px;margin:8vh auto;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px}
+.login-box input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;padding:10px 14px;margin-bottom:12px}
+.btn-main{width:100%;min-height:50px;border:0;border-radius:12px;background:var(--primary);color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.mini-input{min-height:44px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;padding:8px 12px}
+.err-msg{color:#B3261E;font-size:14px;margin-top:10px}
+table.admin-table{width:100%;border-collapse:collapse;font-size:14px}
+table.admin-table td,table.admin-table th{border-bottom:1px solid var(--line);padding:8px;text-align:start}

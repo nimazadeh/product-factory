@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import JalaliInputs from "@/components/JalaliInputs";
 import { WEEKDAY_FA, faNum, gregorianToJalali, isValidJalali, jalaliToGregorian, pad2, type JDate } from "@/lib/date";
+import { track } from "@/lib/track";
 
 export default function ConverterTool() {
   const [j, setJ] = useState<JDate>({ jy: 0, jm: 0, jd: 0 });
@@ -9,6 +10,7 @@ export default function ConverterTool() {
   useEffect(() => {
     const t = new Date();
     setJ(gregorianToJalali({ gy: t.getFullYear(), gm: t.getMonth() + 1, gd: t.getDate() }));
+    track("date-converter", "view");
   }, []);
 
   const out = useMemo(() => {
@@ -27,6 +29,7 @@ export default function ConverterTool() {
       {out?.ok && (
         <div style={{ textAlign: "center" }}>
           <button type="button" className="copy-btn" onClick={async () => {
+            track("date-converter", "copy");
             try { await navigator.clipboard.writeText(out.raw ?? out.text); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* clipboard unavailable */ }
           }}>{copied ? "کپی شد ✓" : "کپی نتیجه"}</button>
         </div>

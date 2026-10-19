@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { faDate, faNum, gregorianToJalali, nextNowruz } from "@/lib/date";
+import { faNum, nextNowruz } from "@/lib/date";
+import { track } from "@/lib/track";
 
 export default function NowruzTool() {
   const [info, setInfo] = useState<{ year: number; days: number; gText: string } | null>(null);
@@ -14,6 +15,7 @@ export default function NowruzTool() {
   }, []);
 
   const share = async () => {
+    track("nowruz-countdown", "share");
     if (!info) return;
     const text = `تا نوروز ${faNum(info.year)} فقط ${faNum(info.days)} روز مانده! 🌱 — دست‌افزار`;
     try {
