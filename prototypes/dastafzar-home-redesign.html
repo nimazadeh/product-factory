@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>پروتوتایپ v2 — دست‌افزار (موبایل اپ‌مانند)</title>
+<style>
+  :root{
+    --green:#0b6e4f; --green-dark:#084f39; --green-soft:#e6f4ee;
+    --ink:#16302a; --muted:#5f7370; --line:#dde8e2; --paper:#f4f7f5;
+    --amber:#b45309; --amber-soft:#fdf3e3;
+    --radius:16px; --nav-h:64px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent}
+  body{font-family:Tahoma,"Segoe UI",sans-serif; background:var(--paper); color:var(--ink); line-height:1.7}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 16px}
+  svg.ic{width:24px;height:24px;stroke:var(--green);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  svg.ic.sm{width:18px;height:18px}
+  svg.ic.lg{width:30px;height:30px}
+
+  /* ===== Header (app bar) ===== */
+  header{position:sticky; top:0; z-index:20; background:#fff; border-bottom:1px solid var(--line)}
+  .appbar{display:flex; align-items:center; gap:10px; min-height:56px; padding:8px 0}
+  .logo{display:flex; align-items:center; gap:8px; font-weight:800; font-size:18px; white-space:nowrap}
+  .logo-mark{width:34px;height:34px;border-radius:10px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:18px}
+  .search{flex:1; display:flex; align-items:center; gap:8px; background:var(--paper); border:1.5px solid var(--line); border-radius:12px; padding:0 12px; min-height:44px; color:var(--muted); font-size:13.5px; min-width:0}
+  .search span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .icon-btn{width:44px;height:44px; border:1.5px solid var(--line); background:#fff; border-radius:12px; display:grid; place-items:center; cursor:pointer; flex:none}
+
+  /* ===== Category rail (superapp-style, icon in circle) ===== */
+  .cats{display:flex; gap:6px; padding:14px 0 6px; overflow-x:auto; scrollbar-width:none; scroll-snap-type:x proximity}
+  .cats::-webkit-scrollbar{display:none}
+  .cat{display:flex; flex-direction:column; align-items:center; gap:6px; min-width:72px; min-height:76px; padding:6px 2px; font-size:12px; color:var(--muted); background:none; border:none; font-family:inherit; cursor:pointer; scroll-snap-align:start; border-radius:12px}
+  .cat .cic{width:50px;height:50px;border-radius:50%;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center}
+  .cat.on{color:var(--green-dark); font-weight:700}
+  .cat.on .cic{border-color:var(--green); background:var(--green-soft)}
+
+  /* ===== Hero / countdown banner ===== */
+  .hero{margin:12px 0 4px; background:linear-gradient(135deg,var(--green-dark),var(--green)); color:#fff; border-radius:20px; padding:22px; display:grid; grid-template-columns:1.2fr .8fr; gap:22px; align-items:center}
+  .hero h1{font-size:27px; line-height:1.45; margin-bottom:8px}
+  .hero p{opacity:.88; font-size:14.5px}
+  .trust{display:flex; flex-wrap:wrap; gap:7px; margin:16px 0}
+  .trust span{display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.32); border-radius:999px; padding:5px 12px; font-size:12.5px; min-height:32px}
+  .trust svg{width:15px;height:15px;stroke:#fff}
+  .hero-cta{display:flex; gap:10px; flex-wrap:wrap}
+  .btn-w{background:#fff; color:var(--green-dark); border:none; border-radius:12px; padding:0 22px; min-height:48px; font-family:inherit; font-weight:800; font-size:15px; cursor:pointer}
+  .btn-o{background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.6); border-radius:12px; padding:0 20px; min-height:48px; font-family:inherit; font-size:15px; cursor:pointer}
+  .count{background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); border-radius:16px; padding:16px; text-align:center}
+  .count .lbl{font-size:13px; opacity:.85; display:flex; align-items:center; justify-content:center; gap:6px}
+  .count .lbl svg{width:16px;height:16px;stroke:#fff}
+  .count .nums{display:flex; justify-content:center; gap:8px; margin:10px 0; direction:ltr}
+  .count .n{background:#fff; color:var(--green-dark); border-radius:12px; min-width:56px; padding:7px 4px}
+  .count .n b{display:block; font-size:22px; line-height:1.2}
+  .count .n i{font-style:normal; font-size:11px; color:var(--muted)}
+  .count .date{font-size:12.5px; opacity:.85}
+
+  h2.sec{font-size:19px; margin:24px 0 4px; display:flex; align-items:center; gap:8px}
+  .sec-sub{color:var(--muted); font-size:13.5px; margin-bottom:12px}
+  .sec-head{display:flex; align-items:flex-end; justify-content:space-between; gap:10px}
+  .more{color:var(--green); font-size:13.5px; font-weight:700; white-space:nowrap; padding-bottom:12px}
+
+  /* ===== Flagship card ===== */
+  .flag{background:#fff; border:2px solid var(--green); border-radius:var(--radius); padding:18px; display:grid; grid-template-columns:auto 1fr auto; gap:16px; align-items:center; box-shadow:0 10px 26px rgba(11,110,79,.09)}
+  .flag .fic{width:60px;height:60px;border-radius:16px;background:var(--green-soft);display:grid;place-items:center}
+  .badge{display:inline-block; background:var(--amber-soft); color:var(--amber); border-radius:999px; padding:2px 11px; font-size:11.5px; font-weight:700; margin-bottom:4px}
+  .flag h3{font-size:18px}
+  .flag p{color:var(--muted); font-size:13.5px}
+  .btn-g{background:var(--green); color:#fff; border:none; border-radius:12px; padding:0 24px; min-height:48px; font-family:inherit; font-weight:800; font-size:15px; cursor:pointer; white-space:nowrap}
+
+  /* ===== Tool rail (mobile) / grid (desktop) — FIXED hierarchy ===== */
+  .rail{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+  .card{background:#fff; border:1.5px solid var(--line); border-radius:var(--radius); padding:16px; display:flex; flex-direction:column; gap:6px; min-height:176px}
+  .card .cic2{width:48px;height:48px;border-radius:14px;background:var(--green-soft);display:grid;place-items:center}
+  .free{font-size:11px; color:var(--green-dark); background:var(--green-soft); border-radius:999px; padding:1px 9px; align-self:flex-start; font-weight:700}
+  .card h3{font-size:16px}
+  .card p{color:var(--muted); font-size:13px; flex:1}
+  .go{color:var(--green); font-weight:800; font-size:14px; display:inline-flex; align-items:center; gap:3px; min-height:32px}
+  .go svg{width:16px;height:16px}
+
+  /* ===== Occasions ===== */
+  .occ{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:14px}
+  .occ .o{background:#fff; border:1.5px solid var(--line); border-radius:var(--radius); padding:14px 16px; display:flex; justify-content:space-between; align-items:center; gap:10px; min-height:64px}
+  .occ .o b{font-size:15px; display:block}
+  .occ .o span{color:var(--muted); font-size:12.5px}
+  .days{background:var(--amber-soft); color:var(--amber); font-weight:800; border-radius:10px; padding:5px 11px; font-size:13px; white-space:nowrap}
+
+  footer{border-top:1px solid var(--line); padding:18px 0 26px; color:var(--muted); font-size:12.5px; text-align:center}
+  .tag{display:inline-block; background:#fff3cd; color:#856404; border:1px dashed #d9a406; border-radius:8px; padding:3px 12px; font-size:12px; margin-bottom:8px}
+
+  /* ===== Bottom navigation (mobile app pattern) ===== */
+  .bottomnav{display:none}
+
+  /* ================= MOBILE — app-like ================= */
+  @media (max-width:760px){
+    body{padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom))}
+    .wrap{padding:0 14px}
+    .icon-btn{display:none}
+    .hero{grid-template-columns:1fr; padding:20px 18px; border-radius:18px}
+    .hero h1{font-size:22px}
+    .flag{grid-template-columns:auto 1fr; padding:16px}
+    .flag .btn-g{grid-column:1/-1; width:100%}
+    .flag .fic{width:52px;height:52px}
+    /* tools become a horizontal snap rail like Digikala product rails */
+    .rail{display:flex; overflow-x:auto; gap:10px; padding:2px 2px 10px; scroll-snap-type:x mandatory; scrollbar-width:none; margin:0 -14px; padding-inline:14px}
+    .rail::-webkit-scrollbar{display:none}
+    .card{min-width:158px; max-width:158px; min-height:188px; scroll-snap-align:start; padding:14px}
+    .occ{display:flex; overflow-x:auto; gap:10px; scrollbar-width:none; margin:0 -14px; padding:2px 14px 10px; scroll-snap-type:x mandatory}
+    .occ::-webkit-scrollbar{display:none}
+    .occ .o{min-width:230px; scroll-snap-align:start}
+    .count .n{min-width:52px}
+    /* bottom nav */
+    .bottomnav{display:grid; grid-template-columns:repeat(4,1fr); position:fixed; bottom:0; right:0; left:0; height:calc(var(--nav-h) + env(safe-area-inset-bottom)); padding-bottom:env(safe-area-inset-bottom); background:#fff; border-top:1px solid var(--line); z-index:30; box-shadow:0 -4px 18px rgba(22,48,42,.06)}
+    .bottomnav button{background:none; border:none; font-family:inherit; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; font-size:11.5px; color:var(--muted); cursor:pointer; min-height:var(--nav-h)}
+    .bottomnav button svg{width:24px;height:24px; stroke:var(--muted)}
+    .bottomnav button.on{color:var(--green-dark); font-weight:700}
+    .bottomnav button.on svg{stroke:var(--green)}
+  }
+</style>
+</head>
+<body>
+
+<header><div class="wrap appbar">
+  <div class="logo"><span class="logo-mark">د</span> دست‌افزار</div>
+  <div class="search">
+    <svg class="ic sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <span>جستجوی ابزار… مثلاً «تبدیل تاریخ»</span>
+  </div>
+  <button class="icon-btn" aria-label="پروفایل"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-5.5 8-5.5s6.5 1.5 8 5.5"/></svg></button>
+</div></header>
+
+<main class="wrap">
+  <nav class="cats" aria-label="دسته‌بندی ابزارها">
+    <button class="cat on"><span class="cic"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>تاریخ و تقویم</button>
+    <button class="cat"><span class="cic"><svg class="ic" viewBox="0 0 24 24"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6"/></svg></span>فاکتورساز</button>
+    <button class="cat"><span class="cic"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 12h.01M18 12h.01"/></svg></span>مالی</button>
+    <button class="cat"><span class="cic"><svg class="ic" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M9 19h6"/></svg></span>متن و عدد</button>
+    <button class="cat"><span class="cic"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L6 21"/></svg></span>عکس</button>
+    <button class="cat"><span class="cic"><svg class="ic" viewBox="0 0 24 24"><path d="m12 3 2.7 5.8 6.3.7-4.6 4.3 1.2 6.2L12 17l-5.6 3 1.2-6.2L3 9.5l6.3-.7z"/></svg></span>محبوب‌ها</button>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <h1>ابزارهای فارسی، دقیق و فوری — بدون ثبت‌نام، بدون هزینه</h1>
+      <p>تقویم شمسی، تبدیل تاریخ، محاسبه سن و به‌زودی فاکتورساز؛ نتیجه همان لحظه روی همه دستگاه‌ها.</p>
+      <div class="trust">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>کاملاً رایگان</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>بدون ثبت‌نام</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>نتیجه فوری</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>تقویم شمسی دقیق</span>
+      </div>
+      <div class="hero-cta">
+        <button class="btn-w">دیدن ابزارها</button>
+        <button class="btn-o">تقویم شمسی</button>
+      </div>
+    </div>
+    <div class="count">
+      <div class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> تا نوروز ۱۴۰۶</div>
+      <div class="nums">
+        <div class="n"><b>۱۵۲</b><i>روز</i></div>
+        <div class="n"><b>۰۷</b><i>ساعت</i></div>
+        <div class="n"><b>۲۴</b><i>دقیقه</i></div>
+      </div>
+      <div class="date">جمعه ۲۹ اسفند ۱۴۰۵ — ساعت تحویل سال</div>
+    </div>
+  </section>
+
+  <div class="sec-head"><div><h2 class="sec">ابزار پرچم‌دار</h2><p class="sec-sub">کامل‌ترین ابزار دست‌افزار — پیشنهاد ما برای شروع</p></div></div>
+  <article class="flag">
+    <div class="fic"><svg class="ic lg" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
+    <div>
+      <span class="badge">پرچم‌دار</span>
+      <h3>تقویم شمسی تعاملی</h3>
+      <p>ماه به ماه بگرد، روی هر روز بزن: معادل میلادی، فاصله از امروز و مناسبت‌ها همان‌جا می‌آیند.</p>
+    </div>
+    <button class="btn-g">شروع</button>
+  </article>
+
+  <div class="sec-head"><div><h2 class="sec">ابزارهای تاریخ</h2><p class="sec-sub">رایگان و بدون ثبت‌نام — نتیجه همان لحظه</p></div><span class="more">مشاهده همه</span></div>
+  <section class="rail">
+    <article class="card"><div class="cic2"><svg class="ic" viewBox="0 0 24 24"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><span class="free">رایگان</span><h3>مبدل تاریخ</h3><p>شمسی به میلادی و برعکس، با روز هفته</p><span class="go">شروع <svg viewBox="0 0 24 24" fill="none" stroke="#0b6e4f" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5m6-7-7 7 7 7"/></svg></span></article>
+    <article class="card"><div class="cic2"><svg class="ic" viewBox="0 0 24 24"><path d="M4 21h16M5 21v-6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6"/><path d="M12 13V9M12 5h.01M8.5 6.5h.01M15.5 6.5h.01"/></svg></div><span class="free">رایگان</span><h3>محاسبه سن</h3><p>سن دقیق به سال، ماه و روز + تولد بعدی</p><span class="go">شروع <svg viewBox="0 0 24 24" fill="none" stroke="#0b6e4f" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5m6-7-7 7 7 7"/></svg></span></article>
+    <article class="card"><div class="cic2"><svg class="ic" viewBox="0 0 24 24"><path d="M8 3 4 7l4 4M4 7h16M16 21l4-4-4-4M20 17H4"/></svg></div><span class="free">رایگان</span><h3>فاصله دو تاریخ</h3><p>چند روز بین دو تاریخ؟ روز، هفته و ماه</p><span class="go">شروع <svg viewBox="0 0 24 24" fill="none" stroke="#0b6e4f" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5m6-7-7 7 7 7"/></svg></span></article>
+    <article class="card"><div class="cic2"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><span class="free">رایگان</span><h3>شمارش معکوس نوروز</h3><p>روز و ساعت مانده تا لحظه تحویل سال</p><span class="go">شروع <svg viewBox="0 0 24 24" fill="none" stroke="#0b6e4f" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5m6-7-7 7 7 7"/></svg></span></article>
+  </section>
+
+  <div class="sec-head"><div><h2 class="sec">مناسبت‌های پیش رو</h2><p class="sec-sub">هیچ مناسبتی را از دست نده</p></div><span class="more">همه مناسبت‌ها</span></div>
+  <section class="occ">
+    <div class="o"><div><b>یلدا</b><span>۳۰ آذر ۱۴۰۵</span></div><span class="days">۶۲ روز مانده</span></div>
+    <div class="o"><div><b>نوروز</b><span>۱ فروردین ۱۴۰۶</span></div><span class="days">۱۵۲ روز مانده</span></div>
+    <div class="o"><div><b>مهرگان</b><span>۱۶ مهر ۱۴۰۶</span></div><span class="days">۳۵۷ روز مانده</span></div>
+  </section>
+</main>
+
+<footer>
+  <span class="tag">پروتوتایپ v2 — موبایل اپ‌مانند + آیکن SVG، هنوز وارد محصول نشده</span><br>
+  دست‌افزار — ابزارهای فارسی رایگان
+</footer>
+
+<nav class="bottomnav" aria-label="ناوبری اصلی">
+  <button class="on"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22v-8h6v8"/></svg>خانه</button>
+  <button><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>ابزارها</button>
+  <button><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>تقویم</button>
+  <button><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-5.5 8-5.5s6.5 1.5 8 5.5"/></svg>پروفایل</button>
+</nav>
+
+</body>
+</html>
