@@ -14,9 +14,9 @@ a{color:inherit}
 .hero-sub{color:var(--ink2);font-size:clamp(16px,2.4vw,19px);line-height:1.9;margin:0 auto 26px;max-width:560px}
 .hero-note{color:var(--ink2);font-size:13.5px;margin-top:14px}
 .converter{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 12px 36px rgba(22,33,28,.07);text-align:start}
-.conv-fields{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
-.conv-field{display:grid;gap:7px;font-size:13.5px;color:var(--ink2)}
-.conv-field input{min-height:52px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:19px;text-align:center;padding:8px}
+.conv-fields{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px}
+.conv-field{display:grid;gap:7px;font-size:13.5px;color:var(--ink2);min-width:0}
+.conv-field input{width:100%;min-width:0;min-height:52px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:19px;text-align:center;padding:8px}
 .conv-field input:focus{outline:2px solid var(--primary);outline-offset:1px}
 .conv-result{margin-top:16px;background:var(--accent);border-radius:12px;padding:14px 16px;font-size:16.5px;text-align:center}
 .conv-result.err{background:#FDECEC;color:#8F1D1D}
@@ -39,7 +39,7 @@ a{color:inherit}
 .dir-switch{position:fixed;bottom:14px;inset-inline:0;display:flex;gap:8px;justify-content:center;z-index:50}
 .dir-switch a{background:#16211C;color:#fff;text-decoration:none;padding:10px 16px;border-radius:99px;font-size:13.5px;box-shadow:0 8px 24px rgba(0,0,0,.3)}
 .dir-switch a[aria-current="true"]{background:#0B6B4F}
-@media(max-width:640px){.topbar nav{display:none}.conv-fields{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:640px){.topbar nav{display:none}.conv-fields{grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr)}}
 .tool-page{max-width:640px;margin:4vh auto 0}
 .tool-page h1{font-size:clamp(28px,5vw,40px);text-align:center;margin:0 0 10px}
 .tool-page .hero-sub{text-align:center}
@@ -52,3 +52,5 @@ a{color:inherit}
 .result-big.err{background:#FDECEC;color:#8F1D1D}
 .count-num{font-size:clamp(56px,14vw,84px);font-weight:800;color:var(--primary-ink);text-align:center;line-height:1.1}
 .copy-btn{margin-top:12px;min-height:44px;padding:10px 22px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--primary-ink);font:inherit;font-weight:700;cursor:pointer}
+
+html,body{overflow-x:clip}
