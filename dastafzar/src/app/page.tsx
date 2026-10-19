@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Converter from "@/components/Converter";
 
 
@@ -16,7 +17,7 @@ export default function Home() {
       <header className="topbar">
         <span className="brand"><span className="brand-mark">د</span> دست‌افزار</span>
         <nav aria-label="ناوبری اصلی">
-          <a href="#tools">ابزارها</a><a href="#why">چرا دست‌افزار</a><a href="#faq">پرسش‌ها</a>
+          <Link href="#tools">ابزارها</Link><Link href="#why">چرا دست‌افزار</Link><Link href="#faq">پرسش‌ها</Link>
         </nav>
       </header>
 
@@ -31,11 +32,11 @@ export default function Home() {
         <h2>ابزارها</h2>
         <div className="tool-grid">
           {TOOLS.map((t) => (
-            <a key={t.name} href={t.href} className="tool-card">
+            <Link key={t.name} href={t.href} className="tool-card">
               <span className="tool-icon" aria-hidden="true">{t.icon}</span>
               <h3>{t.name}</h3><p>{t.desc}</p>
               <span className={`tool-tag ${t.tag === "تخصصی" ? "pro" : ""}`}>{t.tag}</span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

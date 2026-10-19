@@ -2,6 +2,5 @@ import type { Metadata } from "next";
 import AdminClient from "./AdminClient";
 
 export const metadata: Metadata = { title: "داشبورد مدیریت — دست‌افزار", robots: { index: false, follow: false } };
-export const dynamic = "force-dynamic";
 
 export default function Page() { return <AdminClient />; }
