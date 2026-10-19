@@ -1,6 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards, UsePipes } from "@nestjs/common";
 import { Throttle } from "@nestjs/throttler";
-import { EventDto, FeedbackDto, LoginDto, OccasionDto, ToolToggleDto } from "./dto";
+import { eventSchema, feedbackSchema, loginSchema, occasionSchema, toolToggleSchema,
+  type EventInput, type FeedbackInput, type LoginInput, type OccasionInput, type ToolToggleInput } from "./schemas";
+import { ZodPipe } from "./zod.pipe";
 import { AppService } from "./app.service";
 import { PrismaService } from "./prisma.service";
 import { JwtGuard } from "./auth";
@@ -12,11 +14,11 @@ export class AppController {
   @Get("health") health() { return { ok: true, service: "dastafzar-api" }; }
 
   // —— public ——
-  @Post("events") async event(@Body() b: EventDto) {
+  @Post("events") async event(@Body(new ZodPipe(eventSchema)) b: EventInput) {
     await this.db.toolEvent.create({ data: { tool: b.tool, action: b.action } });
     return { ok: true };
   }
-  @Post("feedback") async feedback(@Body() b: FeedbackDto) {
+  @Post("feedback") async feedback(@Body(new ZodPipe(feedbackSchema)) b: FeedbackInput) {
     await this.db.feedback.create({ data: { name: b.name, contact: b.contact, message: b.message } });
     return { ok: true };
   }
@@ -24,7 +26,7 @@ export class AppController {
   @Get("public/tools") tools() { return this.db.toolSetting.findMany(); }
 
   // —— auth ——
-  @Throttle({ default: { limit: 5, ttl: 60000 } }) @Post("auth/login") login(@Body() b: LoginDto) { return this.app.login(b.email, b.password); }
+  @Throttle({ default: { limit: 5, ttl: 60000 } }) @Post("auth/login") login(@Body(new ZodPipe(loginSchema)) b: LoginInput) { return this.app.login(b.email, b.password); }
 
   // —— admin (JWT) ——
   @UseGuards(JwtGuard) @Get("admin/stats") stats() { return this.app.stats(); }
@@ -32,13 +34,13 @@ export class AppController {
   @UseGuards(JwtGuard) @Patch("admin/feedback/:id") async fbHandled(@Param("id") id: string) {
     return this.db.feedback.update({ where: { id }, data: { handled: true } });
   }
-  @UseGuards(JwtGuard) @Post("admin/occasions") addOccasion(@Body() b: OccasionDto) {
+  @UseGuards(JwtGuard) @Post("admin/occasions") addOccasion(@Body(new ZodPipe(occasionSchema)) b: OccasionInput) {
     return this.db.occasion.create({ data: { title: b.title, month: +b.month, day: +b.day } });
   }
   @UseGuards(JwtGuard) @Delete("admin/occasions/:id") delOccasion(@Param("id") id: string) {
     return this.db.occasion.delete({ where: { id } });
   }
-  @UseGuards(JwtGuard) @Patch("admin/tools/:slug") async toggleTool(@Param("slug") slug: string, @Body() b: ToolToggleDto) {
+  @UseGuards(JwtGuard) @Patch("admin/tools/:slug") async toggleTool(@Param("slug") slug: string, @Body(new ZodPipe(toolToggleSchema)) b: ToolToggleInput) {
     return this.db.toolSetting.update({ where: { slug }, data: { enabled: !!b.enabled } });
   }
 }

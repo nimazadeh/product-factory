@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import JalaliInputs from "@/components/JalaliInputs";
 import { WEEKDAY_FA, faNum, gregorianToJalali, isValidJalali, jalaliToGregorian, pad2, type JDate } from "@/lib/date";
 import { track } from "@/lib/track";
+import { jalaliDateSchema } from "@/lib/schemas";
 
 export default function ConverterTool() {
   const [j, setJ] = useState<JDate>({ jy: 0, jm: 0, jd: 0 });
@@ -15,7 +16,7 @@ export default function ConverterTool() {
 
   const out = useMemo(() => {
     if (!j.jy || !j.jm || !j.jd) return null;
-    if (!isValidJalali(j)) return { ok: false, text: "این تاریخ شمسی معتبر نیست — روز و ماه را بررسی کنید." };
+    if (!jalaliDateSchema.safeParse(j).success || !isValidJalali(j)) return { ok: false, text: "این تاریخ شمسی معتبر نیست — روز و ماه را بررسی کنید." };
     const g = jalaliToGregorian(j);
     return { ok: true, text: `${WEEKDAY_FA(g)}، ${g.gy}/${pad2(g.gm)}/${pad2(g.gd)} میلادی`, raw: `${g.gy}/${pad2(g.gm)}/${pad2(g.gd)}` };
   }, [j]);

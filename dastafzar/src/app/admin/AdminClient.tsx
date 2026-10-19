@@ -1,17 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 
+import { apiFetch, userMessage } from "@/lib/errors";
+import { firstError, loginSchema, statsSchema, type Stats } from "@/lib/schemas";
 const API = "";
 const fa = (n: number) => new Intl.NumberFormat("fa-IR").format(n);
-
-interface Stats {
-  totalEvents: number; last30: number; feedbackOpen: number;
-  byTool: { tool: string; count: number }[];
-  daily: Record<string, number>;
-  occasions: { id: string; title: string; month: number; day: number; enabled: boolean }[];
-  tools: { slug: string; title: string; enabled: boolean }[];
-  recent: { id: string; tool: string; action: string; createdAt: string }[];
-}
 
 export default function AdminClient() {
   const [token, setToken] = useState("");
@@ -22,17 +15,22 @@ export default function AdminClient() {
   const [occ, setOcc] = useState({ title: "", month: 1, day: 1 });
 
   const load = async (tk: string) => {
-    const r = await fetch(`${API}/api-backend/admin/stats`, { headers: { Authorization: `Bearer ${tk}` } });
-    if (r.ok) setStats(await r.json());
+    try {
+      const raw = await apiFetch<unknown>(`${API}/api-backend/admin/stats`, { headers: { Authorization: `Bearer ${tk}` } });
+      const parsed = statsSchema.safeParse(raw);
+      if (parsed.success) setStats(parsed.data); else console.error("stats shape", parsed.error);
+    } catch (e) { setErr(userMessage(e)); }
   };
   useEffect(() => { const tk = localStorage.getItem("dastafzar-admin") ?? ""; if (tk) { setToken(tk); load(tk); } }, []);
 
   const login = async () => {
     setErr("");
-    const r = await fetch(`${API}/api-backend/auth/login`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, password }) });
-    const d = await r.json();
-    if (!r.ok) { setErr(d.message ?? "ورود ناموفق"); return; }
-    localStorage.setItem("dastafzar-admin", d.token); setToken(d.token); load(d.token);
+    const v = loginSchema.safeParse({ email, password });
+    if (!v.success) { setErr(firstError(v)); return; }
+    try {
+      const d = await apiFetch<{ token: string }>(`${API}/api-backend/auth/login`, { method: "POST", body: JSON.stringify(v.data) });
+      localStorage.setItem("dastafzar-admin", d.token); setToken(d.token); load(d.token);
+    } catch (e) { setErr(userMessage(e)); }
   };
   const authed = (init: RequestInit = {}) => ({ ...init, headers: { ...(init.headers ?? {}), Authorization: `Bearer ${token}`, "Content-Type": "application/json" } });
 
