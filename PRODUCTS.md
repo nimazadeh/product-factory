@@ -19,3 +19,5 @@
 بازگشت: restore-product.sh → npm install --legacy-peer-deps → فیتچر جدید → آرشیو نسخه بعد
 ```
 | finance-dashboard | v2.2 | 2026-10-19 | 2.9M | `3ba98dceb1b286f3bb4310233fc7fbcca027208d0e823fe9934439e044756ad4` | zipped — ready to download (`_archive/finance-dashboard-latest.zip`) |
+
+| dastafzar (دست‌افزار) | 0.1 | 2026-10-19 | — | — | در توسعه — فاز ۱ کامل، منتظر دامنه/لانچ |
