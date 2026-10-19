@@ -1,23 +1,18 @@
 import Converter from "@/components/Converter";
 
-// TEMP (design exploration): direction preview needs the query string at request time.
-// After the direction is chosen this + the .dir-switch bar are removed and the page goes fully static (SSG).
-export const dynamic = "force-dynamic";
 
 const TOOLS = [
-  { icon: "⇄", name: "مبدل تاریخ", desc: "شمسی ↔ میلادی، آنی و دقیق", tag: "رایگان", live: true },
-  { icon: "🎂", name: "محاسبه سن", desc: "سن دقیق به شمسی و میلادی", tag: "رایگان", live: false },
-  { icon: "↔", name: "فاصله دو تاریخ", desc: "چند روز بین دو تاریخ است؟", tag: "رایگان", live: false },
-  { icon: "🌱", name: "شمارش معکوس نوروز", desc: "تا بهار چند روز مانده؟", tag: "رایگان", live: false },
-  { icon: "🧾", name: "فاکتورساز حرفه‌ای", desc: "فاکتور فارسی با خروجی تمیز", tag: "تخصصی", live: false },
-  { icon: "🔢", name: "عدد به حروف", desc: "برای چک، قرارداد و فاکتور", tag: "به‌زودی", live: false },
+  { icon: "⇄", name: "مبدل تاریخ", href: "/tools/date-converter", desc: "شمسی ↔ میلادی، آنی و دقیق", tag: "رایگان", live: true },
+  { icon: "🎂", name: "محاسبه سن", href: "/tools/age-calculator", desc: "سن دقیق به شمسی و میلادی", tag: "رایگان", live: false },
+  { icon: "↔", name: "فاصله دو تاریخ", href: "/tools/date-difference", desc: "چند روز بین دو تاریخ است؟", tag: "رایگان", live: false },
+  { icon: "🌱", name: "شمارش معکوس نوروز", href: "/tools/nowruz-countdown", desc: "تا بهار چند روز مانده؟", tag: "رایگان", live: false },
+  { icon: "🧾", name: "فاکتورساز حرفه‌ای", href: "#tools", desc: "فاکتور فارسی با خروجی تمیز", tag: "تخصصی", live: false },
+  { icon: "🔢", name: "عدد به حروف", href: "#tools", desc: "برای چک، قرارداد و فاکتور", tag: "به‌زودی", live: false },
 ];
 
-export default async function Home({ searchParams }: { searchParams: Promise<{ dir?: string }> }) {
-  const sp = await searchParams;
-  const dir = ["a", "b", "c"].includes(sp.dir ?? "") ? sp.dir! : "a";
+export default function Home() {
   return (
-    <main className={`landing dir-${dir}`}>
+    <main className="landing">
       <header className="topbar">
         <span className="brand"><span className="brand-mark">د</span> دست‌افزار</span>
         <nav aria-label="ناوبری اصلی">
@@ -36,11 +31,11 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ d
         <h2>ابزارها</h2>
         <div className="tool-grid">
           {TOOLS.map((t) => (
-            <article key={t.name} className="tool-card">
+            <a key={t.name} href={t.href} className="tool-card">
               <span className="tool-icon" aria-hidden="true">{t.icon}</span>
               <h3>{t.name}</h3><p>{t.desc}</p>
               <span className={`tool-tag ${t.tag === "تخصصی" ? "pro" : ""}`}>{t.tag}</span>
-            </article>
+            </a>
           ))}
         </div>
       </section>
@@ -62,13 +57,6 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ d
       </section>
 
       <footer className="footer">دست‌افزار — ساخته‌شده با دقت در Product Factory · داده‌ای از شما ذخیره نمی‌شود</footer>
-
-      {/* direction preview switcher (design exploration — removed after choice) */}
-      <div className="dir-switch" role="group" aria-label="پیش‌نمایش جهت‌های طراحی">
-        <a href="/?dir=a" aria-current={dir === "a"}>الف: روشن خلوت</a>
-        <a href="/?dir=b" aria-current={dir === "b"}>ب: تیره حرفه‌ای</a>
-        <a href="/?dir=c" aria-current={dir === "c"}>ج: گرم کاغذی</a>
-      </div>
     </main>
   );
 }
