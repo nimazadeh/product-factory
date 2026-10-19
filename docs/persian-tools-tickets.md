@@ -1,9 +1,9 @@
-# Tickets — کارساز فاز ۱ (از Spec: persian-tools-spec.md)
+# Tickets — dastafzar فاز ۱ (از Spec: persian-tools-spec.md)
 
 هر بلیت: تست اول (TDD) → پیاده‌سازی → ممیزی هندسی/بصری. ترتیب اجرا از بالا به پایین.
 
 ## T1 — اسکلت محصول و لندینگ
-- پوشه `karsaz/` در مونوریپو (Next.js App Router + SSG — تصمیم SEO)
+- پوشه `dastafzar/` در مونوریپو (Next.js App Router + SSG — تصمیم SEO)
 - گیت design-exploration (skill 18): ۲–۳ جهت لندینگ، انتخاب کاربر
 - لندینگ: Hero + مبدل در نگاه اول، کارت ۴ ابزار، FAQ، فوتر
 - ✅ قبول: بیلد سبز، ریسپانسیو ۳۹۰/۱۴۴۰ بدون overflow
