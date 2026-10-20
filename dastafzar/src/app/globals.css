@@ -199,3 +199,28 @@ table.admin-table td,table.admin-table th{border-bottom:1px solid var(--line);pa
 .bn-item.is-active::before{content:"";position:absolute;top:0;width:28px;height:3px;border-radius:0 0 4px 4px;background:var(--primary)}
 @media(max-width:760px){ .flag-cta{min-height:48px;font-size:15px} }
 @media(prefers-reduced-motion:reduce){ .flag-card,.tool-card,.tool-go svg{transition:none} }
+
+/* ===== v0.4.3 motion polish (Emil rules via Skill 19+22) ===== */
+/* Scroll reveal: entrance 440ms custom ease-out — exits stay short, content
+   is visible by default for reduced-motion / no-JS (Reveal also guards). */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 440ms var(--ease-out),transform 440ms var(--ease-out);will-change:opacity,transform}
+.reveal.is-visible{opacity:1;transform:none}
+/* flagship/tools/occasions keep their own top margin inside Reveal wrappers */
+.reveal > .flagship,.reveal > .occasions{margin-top:52px}
+.reveal > .tools,.reveal > .why,.reveal > .faq{margin-top:64px}
+/* Result moments should feel alive but never bouncy */
+.conv-result,.result-big{animation:result-in 260ms var(--ease-out)}
+@keyframes result-in{from{opacity:.4;transform:translateY(4px) scale(.995)}to{opacity:1;transform:none}}
+/* Press feedback on primary tappables (Emil: buttons must feel responsive) */
+.flag-card:active{transform:scale(.99)}
+.btn-main:active,.copy-btn:active,.bn-item:active{transform:scale(.97)}
+.copy-btn,.bn-item svg{transition:transform 160ms var(--ease-out),background 180ms var(--ease-out),color 180ms var(--ease-out)}
+/* Category circles: gentle press + hover lift */
+.cat:active .cat-circle{transform:scale(.94)}
+.cat-circle{transition:transform 180ms var(--ease-out),border-color 180ms var(--ease-out),background 180ms var(--ease-out)}
+.cat:hover .cat-circle{transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .conv-result,.result-big{animation:none}
+  html{scroll-behavior:auto}
+}

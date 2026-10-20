@@ -10,6 +10,7 @@ import FaqItem from "@/components/FaqItem";
 import NowruzPill from "@/components/NowruzPill";
 import OccasionsStrip from "@/components/OccasionsStrip";
 import BottomNav from "@/components/BottomNav";
+import Reveal from "@/components/Reveal";
 
 interface Tool { Icon: ComponentType<{ size?: number | string; className?: string }>; name: string; href: string; desc: string; tag: string }
 const TOOLS: Tool[] = [
@@ -75,7 +76,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flagship" aria-label="ابزار پرچم‌دار">
+      <Reveal><section className="flagship" aria-label="ابزار پرچم‌دار">
         <div className="sec-head">
           <div>
             <h2>ابزار پرچم‌دار</h2>
@@ -91,9 +92,9 @@ export default function Home() {
           </span>
           <span className="flag-cta">شروع</span>
         </Link>
-      </section>
+      </section></Reveal>
 
-      <section id="tools" className="tools">
+      <Reveal><section id="tools" className="tools">
         <div className="sec-head">
           <div>
             <h2>ابزارها</h2>
@@ -111,11 +112,11 @@ export default function Home() {
             </Link>
           ))}
         </div>
-      </section>
+      </section></Reveal>
 
-      <OccasionsStrip />
+      <Reveal><OccasionsStrip /></Reveal>
 
-      <section id="why" className="why">
+      <Reveal><section id="why" className="why">
         <h2>چرا دست‌افزار؟</h2>
         <ul>
           <li><strong>همیشه به تاریخ شمسی:</strong> دیگر لازم نیست برای هر تبدیل، اول میلادی‌اش را حدس بزنید — همه‌چیز از اول شمسی و فارسی است.</li>
@@ -123,14 +124,14 @@ export default function Home() {
           <li><strong>خصوصی و سریع:</strong> محاسبه روی دستگاه خودتان انجام می‌شود؛ نه داده‌ای جایی می‌رود، نه منتظر سرور می‌مانید.</li>
           <li><strong>آماده اشتراک‌گذاری:</strong> نتیجه‌ها را همان‌جا کپی کنید یا برای خانواده و دوستان بفرستید — مثل شمارش معکوس نوروز.</li>
         </ul>
-      </section>
+      </section></Reveal>
 
-      <section id="faq" className="faq">
+      <Reveal><section id="faq" className="faq">
         <h2>پرسش‌های پرتکرار</h2>
         <FaqItem q="مبدل تاریخ دست‌افزار چقدر دقیق است؟" a="بر پایه الگوریتم رسمی جلالی (jalaali) — همان مبنای تقویم رسمی کشور، با تست روی مرز نوروز و سال‌های کبیسه." />
         <FaqItem q="ابزارها رایگان‌اند؟" a="ابزارهای پایه همیشه رایگان‌اند. خروجی‌های تخصصی (مثل فاکتور بدون واترمارک) نسخه حرفه‌ای دارند." />
         <FaqItem q="نیاز به ثبت‌نام دارم؟" a="نه. همه ابزارهای پایه بدون حساب کار می‌کنند و داده‌ای از شما ذخیره نمی‌شود." />
-      </section>
+      </section></Reveal>
 
       <footer className="footer">دست‌افزار — ساخته‌شده با دقت در Product Factory · داده‌ای از شما ذخیره نمی‌شود</footer>
       <BottomNav />
