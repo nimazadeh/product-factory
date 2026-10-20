@@ -41,3 +41,30 @@ test("هندسی: لیبل‌های مبدل وسط‌چین‌اند", async ({
     expect(dx).toBeLessThanOrEqual(2);
   }
 });
+
+test("فوکوس اینپوت حین تایپ نمی‌پرد (رگرسیون remount)", async ({ page }) => {
+  // جلالی inputs are used by converter / age / date-difference
+  for (const path of ["/tools/date-converter", "/tools/age-calculator", "/tools/date-difference"]) {
+    await page.goto(path);
+    const year = page.locator(".jinputs input").first();
+    await year.click();
+    await year.fill("");
+    await page.keyboard.type("1405");
+    await expect(year).toHaveValue("1405");
+    await expect(year).toBeFocused();
+    const month = page.locator(".jinputs input").nth(1);
+    await month.click();
+    await month.fill("");
+    await page.keyboard.type("12");
+    await expect(month).toHaveValue("12");
+    await expect(month).toBeFocused();
+  }
+  // landing hero quick converter
+  await page.goto("/");
+  const heroYear = page.locator(".converter input").first();
+  await heroYear.click();
+  await heroYear.fill("");
+  await page.keyboard.type("1404");
+  await expect(heroYear).toHaveValue("1404");
+  await expect(heroYear).toBeFocused();
+});
