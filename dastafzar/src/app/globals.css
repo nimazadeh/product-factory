@@ -203,7 +203,7 @@ table.admin-table td,table.admin-table th{border-bottom:1px solid var(--line);pa
 /* ===== v0.4.3 motion polish (Emil rules via Skill 19+22) ===== */
 /* Scroll reveal: entrance 440ms custom ease-out — exits stay short, content
    is visible by default for reduced-motion / no-JS (Reveal also guards). */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity 440ms var(--ease-out),transform 440ms var(--ease-out);will-change:opacity,transform}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 250ms var(--ease-out),transform 250ms var(--ease-out);will-change:opacity,transform}
 .reveal.is-visible{opacity:1;transform:none}
 /* flagship/tools/occasions keep their own top margin inside Reveal wrappers */
 .reveal > .flagship,.reveal > .occasions{margin-top:52px}
@@ -364,4 +364,15 @@ table.admin-table td,table.admin-table th{border-bottom:1px solid var(--line);pa
   .cal-split{grid-template-columns:minmax(0,640px)}
   .cal-panel{position:static}
   .cal-panel-scroll{max-height:280px}
+}
+
+/* --- benchmark trio applied (v0.8.0): Airbnb chips, Linear press, Stripe live sample --- */
+.date-chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
+.date-chip{border:1.5px solid var(--line,#e2e8f0);background:#fff;border-radius:999px;padding:7px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;min-height:40px;transition:transform 110ms var(--ease-out),background 160ms var(--ease-out),border-color 160ms var(--ease-out)}
+.date-chip:hover{border-color:#059669;background:#ecfdf5}
+.tool-live{display:block;margin-top:10px;font-size:13px;font-weight:700;color:#047857;background:#ecfdf5;border-radius:10px;padding:8px 11px;line-height:1.9}
+/* Linear press feedback: one tactile scale for every tappable surface */
+.cal-day:active,.pg-btn:active,.cal-today-btn:active,.tools-chip:active,.copy-btn:active,.tool-card:active,.flag-card:active,.cal-panel-item:active,.date-chip:active,.month-occ-item:active{transform:scale(.97)}
+@media (prefers-reduced-motion: reduce){
+  .cal-day:active,.pg-btn:active,.cal-today-btn:active,.tools-chip:active,.copy-btn:active,.tool-card:active,.flag-card:active,.cal-panel-item:active,.date-chip:active{transform:none}
 }

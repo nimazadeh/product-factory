@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Check, Copy } from "lucide-react";
 import JalaliInputs from "@/components/JalaliInputs";
+import DateChips from "@/components/DateChips";
 import { WEEKDAY_FA, faNum, gregorianToJalali, isValidJalali, jalaliToGregorian, pad2, type JDate } from "@/lib/date";
 import { track } from "@/lib/track";
 import { jalaliDateSchema } from "@/lib/schemas";
@@ -25,6 +26,7 @@ export default function ConverterTool() {
   return (
     <div className="tool-box">
       <JalaliInputs legend="تاریخ شمسی" value={j} onChange={setJ} />
+      <DateChips onPick={setJ} />
       <div className={`result-big res-card ${out && !out.ok ? "err" : ""}`} role="status">
         {out?.ok ? (<>
           <span className="res-label">معادل میلادی</span>

@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { toGregorian, toJalaali } from "jalaali-js";
 import { track } from "@/lib/track";
+import DateChips from "./DateChips";
 
 const faNum = (n: number | string) => String(n).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[+d]);
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -43,6 +44,7 @@ export default function Converter() {
         {field("ماه", jm, setJm, 2)}
         {field("روز", jd, setJd, 2)}
       </div>
+      <DateChips onPick={(j) => { setJy(String(j.jy)); setJm(String(j.jm)); setJd(String(j.jd)); }} />
       <div className={`conv-result ${result?.ok ? "" : "err"}`} role="status">
         {result ? <>برابر است با <strong>{result.text}</strong></> : "تاریخ شمسی را وارد کنید"}
       </div>

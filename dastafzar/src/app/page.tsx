@@ -11,6 +11,7 @@ import NowruzPill from "@/components/NowruzPill";
 import OccasionsStrip from "@/components/OccasionsStrip";
 import BottomNav from "@/components/BottomNav";
 import Reveal from "@/components/Reveal";
+import CardSample from "@/components/CardSample";
 
 interface Tool { Icon: ComponentType<{ size?: number | string; className?: string }>; name: string; href: string; desc: string; tag: string }
 const TOOLS: Tool[] = [
@@ -107,7 +108,7 @@ export default function Home() {
             <Link key={name} href={href} className="tool-card">
               <span className="tool-icon"><Icon size={25} aria-hidden /></span>
               <span className={`tool-tag ${tag === "به‌زودی" ? "pro" : ""}`}>{tag}</span>
-              <h3>{name}</h3><p>{desc}</p>
+              <h3>{name}</h3><p>{desc}</p><CardSample slug={href.replace('/tools/', '')} />
               <span className="tool-go">شروع <ArrowLeft size={15} aria-hidden /></span>
             </Link>
           ))}
