@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Sparkles, CalendarHeart } from "lucide-react";
 import { MONTHS_FA, WEEKDAYS_FA, WEEKDAY_FA, diffDays, faDate, faNum, firstColumnOfMonth, gregorianToJalali, isValidJalali, jalaliToGregorian, monthLength, pad2, type JDate } from "@/lib/date";
 import { occasionsForYear } from "@/lib/occasions";
@@ -17,6 +17,22 @@ export default function CalendarTool() {
   }, [yearMap]);
   const monthOccasions = useMemo(() => occasions.filter((o) => o.month === cursor.jm).sort((a, b) => a.day - b.day), [occasions, cursor.jm]);
   const [dir, setDir] = useState(0);
+  const panelRef = useRef<HTMLElement | null>(null);
+  const itemRefs = useRef(new Map<string, HTMLButtonElement>());
+
+  // When a day with an occasion is picked, bring its row into view inside the
+  // side panel and focus it, so the user lands exactly on that occasion.
+  useEffect(() => {
+    if (!selected || selected.jy !== cursor.jy || selected.jm !== cursor.jm) return;
+    const key = `${selected.jd}-${occOf(selected.jd)?.title ?? ""}`;
+    const el = itemRefs.current.get(key);
+    const panel = panelRef.current;
+    if (!el || !panel) return;
+    const target = el.offsetTop - panel.clientHeight / 2 + el.clientHeight / 2;
+    panel.scrollTo({ top: Math.max(0, target), behavior: "smooth" });
+    el.focus({ preventScroll: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected, cursor]);
 
   useEffect(() => {
     const t = new Date();
@@ -45,6 +61,7 @@ export default function CalendarTool() {
   }, [selected, today, yearMap]);
 
   return (
+    <div className="cal-split">
     <div className="tool-box cal">
       <div className="cal-head">
         <button type="button" className="pg-btn" onClick={() => move(-1)} aria-label="ماه قبل"><ChevronRight size={19} /></button>
@@ -77,20 +94,27 @@ export default function CalendarTool() {
           <span className="cal-result-diff">{selInfo.diff === 0 ? "همین امروز است" : `فاصله از امروز: ${faNum(selInfo.diff)} روز`}</span>
         </div>
       )}
-      <section className="month-occ" aria-label={`مناسبت‌های ${MONTHS_FA[cursor.jm - 1]}`}>
-        <h2 className="month-occ-title">مناسبت‌های {MONTHS_FA[cursor.jm - 1]} {faNum(cursor.jy)}</h2>
-        {monthOccasions.length ? (
-          <ul className="month-occ-list">
-            {monthOccasions.map((o) => (
-              <li key={`${o.day}-${o.title}`} className="month-occ-item">
-                <span className="month-occ-day">{faNum(o.day)}</span>
-                <span className="month-occ-name">{o.title}</span>
-                {o.holiday && <span className="month-occ-badge">تعطیل رسمی</span>}
-              </li>
-            ))}
-          </ul>
-        ) : <p className="month-occ-empty">برای این ماه مناسبتی ثبت نشده است.</p>}
-      </section>
+    </div>
+    <aside className="cal-panel" aria-label={`مناسبت‌های ${MONTHS_FA[cursor.jm - 1]}`}>
+      <h2 className="month-occ-title">مناسبت‌های {MONTHS_FA[cursor.jm - 1]} {faNum(cursor.jy)} <span className="cal-panel-count">({faNum(monthOccasions.length)})</span></h2>
+      <div className="cal-panel-scroll" ref={(n) => { panelRef.current = n as unknown as HTMLElement; }}>
+        {monthOccasions.length ? monthOccasions.map((o) => {
+          const key = `${o.day}-${o.title}`;
+          const isActive = selected?.jy === cursor.jy && selected?.jm === cursor.jm && selected?.jd === o.day;
+          return (
+            <button type="button" key={key}
+              ref={(n) => { if (n) itemRefs.current.set(key, n); else itemRefs.current.delete(key); }}
+              className={`month-occ-item cal-panel-item${isActive ? " active" : ""}`}
+              aria-current={isActive ? "true" : undefined}
+              onClick={() => setSelected({ jy: cursor.jy, jm: cursor.jm, jd: o.day })}>
+              <span className="month-occ-day">{faNum(o.day)}</span>
+              <span className="month-occ-name">{o.title}</span>
+              {o.holiday && <span className="month-occ-badge">تعطیل رسمی</span>}
+            </button>
+          );
+        }) : <p className="month-occ-empty">برای این ماه مناسبتی ثبت نشده است.</p>}
+      </div>
+    </aside>
     </div>
   );
 }

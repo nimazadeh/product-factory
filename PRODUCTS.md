@@ -21,4 +21,4 @@
 ```
 | finance-dashboard | v2.2 | 2026-10-19 | 2.9M | `3ba98dceb1b286f3bb4310233fc7fbcca027208d0e823fe9934439e044756ad4` | zipped — ready to download (`_archive/finance-dashboard-v2.2.0.zip`) |
 
-| dastafzar | v0.7.0 | 2026-10-20 | 524K | `43e7bfe90da46cb65dd398d11561f2006a019976d3058a5b64d1b269304caba6` | zipped — ready to download (`_archive/dastafzar-v0.7.0.zip`) — rebuilt after every change |
+| dastafzar | v0.7.1 | 2026-10-20 | 524K | `e3010519e64aa661f2ecfa611bc3fad9e53f76ba2f64fa9525527e9136c76d05` | zipped — ready to download (`_archive/dastafzar-v0.7.1.zip`) — rebuilt after every change |
