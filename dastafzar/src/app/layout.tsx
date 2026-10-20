@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { Vazirmatn } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const vazir = Vazirmatn({ subsets: ["arabic"], weight: ["400", "500", "700", "800"], display: "swap" });
+// Self-hosted Vazirmatn variable font (100-900) — no Google Fonts request at
+// runtime, so the site stays fully self-contained on Iranian hosting.
+const vazir = localFont({
+  src: "./fonts/vazirmatn-variable.woff2",
+  weight: "100 900",
+  display: "swap",
+  variable: "--font-Vazirmatn",
+});
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://dastafzar.example.com";
 export const metadata: Metadata = {
@@ -16,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fa" dir="rtl" className={vazir.className}>
+    <html lang="fa" dir="rtl" className={`${vazir.className} ${vazir.variable}`}>
       <body>{children}</body>
     </html>
   );
