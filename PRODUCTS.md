@@ -2,6 +2,7 @@
 
 > قانون کار بلندمدت (از ۲۰۲۶-۱۰-۱۸): هر محصول که تمام شد → آرشیو ZIP → حذف پوشه منبع.
 > **قانون ZIP واحد + نسخه روی نام (از ۲۰۲۶-۱۰-۱۹ — جایگزین قانون قبلی): برای هر محصول همیشه فقط یک فایل `_archive/<product>-v<semver>.zip` وجود دارد؛ نسخه دقیق SemVer روی نام فایل است، بعد از هر تغییر بازسازی می‌شود و ZIP قبلی خودکار حذف می‌شود.**
+> **قانون اسکرین‌شات (۲۰۲۶-۱۰-۲۰): ZIPها هرگز شامل `screenshots/` نیستند — اسکرین‌شات‌ها فقط در Git می‌مانند تا حجم آرشیو کم بماند.**
 > برگرداندن: `_system/restore-product.sh _archive/<product>-latest.zip` — بعد `npm install` و ادامه توسعه.
 > آرشیو هرگز شامل `node_modules/dist/build` نیست (قابل بازسازی‌اند و اصلاً در Snapshot ذخیره نمی‌شوند).
 
@@ -20,4 +21,4 @@
 ```
 | finance-dashboard | v2.2 | 2026-10-19 | 2.9M | `3ba98dceb1b286f3bb4310233fc7fbcca027208d0e823fe9934439e044756ad4` | zipped — ready to download (`_archive/finance-dashboard-v2.2.0.zip`) |
 
-| dastafzar | v0.6.0 | 2026-10-20 | 2.5M | `44bc5b7832e3f0a0c095ba91f3b6a694c942a3cbfd769df5660e57e29d6e80ee` | zipped — ready to download (`_archive/dastafzar-v0.6.0.zip`) — rebuilt after every change |
+| dastafzar | v0.6.0 | 2026-10-20 | 512K | `4bbdef9f89d5c8ad8d3d8b8f97699588ebc46d42067668723905e463d855c3bf` | zipped — ready to download (`_archive/dastafzar-v0.6.0.zip`) — rebuilt after every change |

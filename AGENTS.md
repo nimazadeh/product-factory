@@ -15,7 +15,7 @@
 4. **بک‌اند و امنیت سرتاسری:** `backend-skills/00-MASTER-backend-security/SKILL.md` + استک مرجع `docs/backend-stack-ADR.md` (NestJS/PostgreSQL) — هر محصول دارای بک‌اند/API/لاگین تابع این دو فایل است.
 4. **چرخه ساخت محصول:** نقشه و سؤال (مثل grill-me) → Spec → تیکت‌های کوچک → پیاده‌سازی با تست → بازبینی → ممیزی مرورگری → تحویل
 5. **قانون ZIP واحد:** برای هر محصول همیشه فقط یک فایل بایگانی: `_archive/<product>-latest.zip` — نسخه جدید جایگزین قبلی می‌شود، قدیمی‌ها خودکار حذف می‌شوند. اجرا: `_system/archive-product.sh <dir> <version>` (با `--delete` فقط وقتی کاربر گفت محصول تمام شد). شماره نسخه در `VERSION.txt` داخل محصول و در `PRODUCTS.md` ثبت می‌شود.
-6. **حافظه Workspace:** `_archive/` = خروجی‌ها؛ `PRODUCTS.md` = دفتر ثبت محصولات/نسخه‌ها. ZIP هرگز شامل `node_modules/dist/build` نیست.
+6. **حافظه Workspace:** `_archive/` = خروجی‌ها؛ `PRODUCTS.md` = دفتر ثبت محصولات/نسخه‌ها. ZIP هرگز شامل `node_modules/dist/build` نیست و از ۲۰۲۶-۱۰-۲۰ شامل `screenshots/` هم نیست (قانون کاهش حجم).
 7. **بازگردانی محصول:** `_system/restore-product.sh _archive/<product>-latest.zip` سپس `npm install --legacy-peer-deps` (در این محیط npm بدون این فلگ خطا می‌دهد).
 
 ## نقشه Workspace
@@ -32,3 +32,4 @@
 ## قانون نسخه‌بندی و ZIP (۲۰۲۶-۱۰-۱۹)
 - نسخه‌بندی **SemVer** دقیق: `MAJOR.MINOR.PATCH` (قبل از لانچ عمومی 0.x؛ هر فیچر MINOR، هر فیکس PATCH، تغییر ناسازگار MAJOR). نسخه محصول در `package.json` و `VERSION.txt` یکی است.
 - **بعد از هر تغییر**، ZIP محصول به‌روز می‌شود: `_archive/<product>-v<semver>.zip` — همیشه فقط یک ZIP از هر محصول می‌ماند و نسخه دقیق روی نام فایل است. رجیستری `PRODUCTS.md` همان لحظه آپدیت می‌شود.
+- **قانون اسکرین‌شات در ZIP (۲۰۲۶-۱۰-۲۰):** پوشه `screenshots/` هرگز وارد ZIP نمی‌شود (فقط در Git می‌ماند) تا حجم آرشیو کم بماند. اسکریپت `_system/archive-product.sh` این را خودکار اعمال می‌کند.
