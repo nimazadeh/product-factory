@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <ToolShell title="تقویم شمسی تعاملی" desc="ماه به ماه بگردید، روی هر روز بزنید — معادل میلادی و مناسبتش همان‌جا می‌آید.">
+    <ToolShell title="تقویم شمسی تعاملی" desc="ماه به ماه بگردید، روی هر روز بزنید — معادل میلادی و مناسبتش همان‌جا می‌آید." navActive="calendar">
       <CalendarTool />
     </ToolShell>
   );

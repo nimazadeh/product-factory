@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
+import { Check, Copy } from "lucide-react";
 import JalaliInputs from "@/components/JalaliInputs";
 import { WEEKDAY_FA, faNum, gregorianToJalali, isValidJalali, jalaliToGregorian, pad2, type JDate } from "@/lib/date";
 import { track } from "@/lib/track";
@@ -24,15 +25,19 @@ export default function ConverterTool() {
   return (
     <div className="tool-box">
       <JalaliInputs legend="تاریخ شمسی" value={j} onChange={setJ} />
-      <div className={`result-big ${out && !out.ok ? "err" : ""}`} role="status">
-        {out ? out.text : "تاریخ را وارد کنید"}
+      <div className={`result-big res-card ${out && !out.ok ? "err" : ""}`} role="status">
+        {out?.ok ? (<>
+          <span className="res-label">معادل میلادی</span>
+          <span className="res-main" dir="ltr">{out.raw}</span>
+          <span className="res-sub">{out.text.split("،")[0]}</span>
+        </>) : (out ? out.text : "تاریخ را وارد کنید")}
       </div>
       {out?.ok && (
         <div style={{ textAlign: "center" }}>
           <button type="button" className="copy-btn" onClick={async () => {
             track("date-converter", "copy");
             try { await navigator.clipboard.writeText(out.raw ?? out.text); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* clipboard unavailable */ }
-          }}>{copied ? "کپی شد ✓" : "کپی نتیجه"}</button>
+          }}>{copied ? <><Check size={16} aria-hidden /> کپی شد</> : <><Copy size={16} aria-hidden /> کپی نتیجه</>}</button>
         </div>
       )}
       <p className="conv-today">امروز شمسی: {j.jy ? faNum(j.jy) + "/" + faNum(pad2(j.jm)) + "/" + faNum(pad2(j.jd)) : "…"}</p>

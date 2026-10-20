@@ -282,3 +282,29 @@ table.admin-table td,table.admin-table th{border-bottom:1px solid var(--line);pa
 .daily-bar{flex:1;background:var(--primary);border-radius:3px 3px 0 0;min-height:3px;transition:height 600ms var(--ease-out)}
 .admin-panel h2{display:flex;align-items:center;gap:8px}
 @media(prefers-reduced-motion:reduce){.skel,.spin{animation:none}.usage-fill,.daily-bar{transition:none}}
+
+/* ===== v0.6.0 tools polish: shared result anatomy (Skill 22) ===== */
+.tool-box{box-shadow:var(--shadow-sm,0 1px 2px rgba(20,33,27,.05),0 4px 14px rgba(20,33,27,.05))}
+.back-link{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--primary-ink);font-weight:700;font-size:14px;text-decoration:none;margin-bottom:6px}
+.back-link svg{transition:transform 180ms var(--ease-out)}
+.back-link:hover svg{transform:translateX(3px)}
+.conv-field input::placeholder{color:var(--ink2);opacity:.55}
+.conv-field input[aria-invalid="true"]{border-color:#C0362C;box-shadow:0 0 0 3px rgba(192,54,44,.14)}
+.jinputs legend{font-size:16px}
+.jinputs + .jinputs{margin-top:18px}
+/* result anatomy: label -> main value -> sub/chips (same as calendar) */
+.res-card{margin-top:16px;background:var(--accent);border-radius:14px;padding:18px;text-align:center;display:grid;gap:7px;justify-items:center;animation:result-in 260ms var(--ease-out)}
+.res-label{font-size:12.5px;color:var(--ink2);font-weight:700}
+.res-main{font-size:27px;font-weight:800;line-height:1.35}
+.res-main small{font-size:15px;font-weight:700;color:var(--ink2)}
+.res-sub{font-size:14px;color:var(--ink2)}
+.res-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.res-chip{background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:4px 13px;font-size:13px;font-weight:700}
+.stat-tiles{display:flex;gap:8px;justify-content:center;direction:ltr}
+.stat-tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;min-width:64px;padding:9px 6px;display:block;box-shadow:0 1px 2px rgba(20,33,27,.05)}
+.stat-tile b{display:block;font-size:24px;line-height:1.25;font-variant-numeric:tabular-nums}
+.stat-tile i{font-style:normal;font-size:11px;color:var(--ink2)}
+.stat-tiles-4 .stat-tile{min-width:60px}
+.copy-btn svg{flex:none}
+@media(max-width:640px){.stat-tiles-4 .stat-tile{min-width:54px}.stat-tile b{font-size:21px}}
+@media(prefers-reduced-motion:reduce){.res-card{animation:none}.back-link svg{transition:none}}

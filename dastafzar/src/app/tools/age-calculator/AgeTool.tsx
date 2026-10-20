@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import JalaliInputs from "@/components/JalaliInputs";
-import { ageFrom, faNum, gregorianToJalali, isValidJalali, type JDate } from "@/lib/date";
+import { ageFrom, diffDays, faNum, gregorianToJalali, isValidJalali, type JDate } from "@/lib/date";
 
 export default function AgeTool() {
   const [birth, setBirth] = useState<JDate>({ jy: 0, jm: 0, jd: 0 });
@@ -19,11 +19,21 @@ export default function AgeTool() {
   return (
     <div className="tool-box">
       <JalaliInputs legend="تاریخ تولد (شمسی)" value={birth} onChange={setBirth} />
-      <div className={`result-big ${birth.jy && !age ? "err" : ""}`} role="status">
-        {!birth.jy ? "تاریخ تولد را وارد کنید"
-          : !age ? "تاریخ تولد معتبر نیست یا در آینده است"
-          : <>سن شما: <strong>{faNum(age.years)} سال و {faNum(age.months)} ماه و {faNum(age.days)} روز</strong></>}
-      </div>
+      {age ? (
+        <div className="res-card" role="status">
+          <span className="res-label">سن دقیق شما</span>
+          <div className="stat-tiles">
+            <span className="stat-tile"><b>{faNum(age.years)}</b><i>سال</i></span>
+            <span className="stat-tile"><b>{faNum(age.months)}</b><i>ماه</i></span>
+            <span className="stat-tile"><b>{faNum(age.days)}</b><i>روز</i></span>
+          </div>
+          <span className="res-sub">در مجموع {faNum(diffDays(birth, today))} روز از تولدتان گذشته است</span>
+        </div>
+      ) : (
+        <div className={`result-big ${birth.jy ? "err" : ""}`} role="status">
+          {birth.jy ? "تاریخ تولد معتبر نیست یا در آینده است" : "تاریخ تولد را وارد کنید"}
+        </div>
+      )}
     </div>
   );
 }
