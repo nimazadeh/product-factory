@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>پروتوتایپ پولیش v3 — دست‌افزار</title>
+<style>
+/* ===== Skill 22 tokens: semantic, one radius base, one card spacing ===== */
+:root{
+  --bg:#F5F7F5; --surface:#fff; --surface-2:#EEF3EF;
+  --ink:#14211B; --ink-muted:#5B6B61;
+  --border:#DFE7DF; --ring:#0B6B4F;
+  --primary:#0B6B4F; --primary-strong:#084F39; --primary-soft:#E7F2EC;
+  --warn-soft:#FBF0DC; --warn-ink:#92500F;
+  --radius:12px; --radius-sm:8px; --radius-lg:16px; --radius-xl:20px;
+  --card-spacing:20px;
+  --shadow-sm:0 1px 2px rgba(20,33,27,.05),0 4px 14px rgba(20,33,27,.05);
+  --shadow-lg:0 2px 4px rgba(20,33,27,.05),0 16px 40px rgba(20,33,27,.12);
+  --ease-out:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+svg.ic{stroke:var(--primary);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+a,button{font-family:inherit}
+:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:4px}
+
+/* header — quiet */
+header{position:sticky;top:0;z-index:20;background:rgba(245,247,245,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.appbar{display:flex;align-items:center;gap:16px;min-height:60px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:17px}
+nav.main{margin-inline-start:auto;display:flex;gap:4px}
+nav.main a{color:var(--ink-muted);text-decoration:none;font-size:14px;padding:8px 12px;border-radius:var(--radius-sm);min-height:40px;display:inline-flex;align-items:center;transition:background 180ms var(--ease-out),color 180ms var(--ease-out)}
+nav.main a:hover{background:var(--surface-2);color:var(--ink)}
+
+/* category rail */
+.cats{display:flex;gap:4px;padding:16px 0 8px;overflow-x:auto;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cat{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:72px;min-height:76px;padding:6px 2px;font-size:12px;color:var(--ink-muted);background:none;border:none;cursor:pointer;border-radius:var(--radius);transition:background 180ms var(--ease-out)}
+.cat:hover{background:var(--surface-2)}
+.cat .cic{width:48px;height:48px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:grid;place-items:center;transition:border-color 180ms var(--ease-out)}
+.cat.on{color:var(--primary-strong);font-weight:700}
+.cat.on .cic{border-color:var(--primary);background:var(--primary-soft)}
+
+/* ===== hero ===== */
+.hero{margin:16px 0 0;background:linear-gradient(140deg,var(--primary-strong),var(--primary) 70%);color:#fff;border-radius:var(--radius-xl);padding:32px 32px 0;box-shadow:var(--shadow-lg)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+.hero h1{font-size:30px;line-height:1.4;font-weight:800;letter-spacing:-.2px}
+.hero h1 em{font-style:normal;color:#BFE6D2}
+.hero p{opacity:.88;font-size:15px;margin-top:10px;max-width:44ch}
+.count{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);border-radius:var(--radius-lg);padding:16px;text-align:center}
+.count .lbl{font-size:12.5px;opacity:.85}
+.count .nums{display:flex;justify-content:center;gap:8px;margin-top:10px;direction:ltr}
+.count .n{background:#fff;color:var(--primary-strong);border-radius:10px;min-width:54px;padding:6px 4px}
+.count .n b{display:block;font-size:21px;line-height:1.25;font-variant-numeric:tabular-nums}
+.count .n i{font-style:normal;font-size:10.5px;color:var(--ink-muted)}
+/* converter card inside hero */
+.conv{margin-top:24px;background:var(--surface);color:var(--ink);border-radius:var(--radius-lg);padding:var(--card-spacing);box-shadow:var(--shadow-sm)}
+.conv .fields{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:12px}
+.field{display:grid;gap:6px;text-align:center}
+.field label{font-size:12.5px;color:var(--ink-muted)}
+.field input{width:100%;min-width:0;min-height:48px;border:1px solid var(--border);border-radius:10px;background:var(--bg);font:inherit;font-size:17px;text-align:center;color:var(--ink);transition:border-color 180ms var(--ease-out),box-shadow 180ms var(--ease-out)}
+.field input:focus{outline:none;border-color:var(--ring);box-shadow:0 0 0 3px rgba(11,107,79,.18)}
+.conv .result{margin-top:14px;background:var(--primary-soft);border-radius:10px;padding:12px 16px;text-align:center;font-size:15.5px;font-weight:600}
+.conv .today{margin-top:10px;text-align:center;color:var(--ink-muted);font-size:12.5px}
+/* trust bar: hairline row, no pills */
+.trust{display:flex;flex-wrap:wrap;margin-top:24px;border-top:1px solid rgba(255,255,255,.22)}
+.trust span{display:inline-flex;align-items:center;gap:7px;padding:12px 16px;font-size:13px;color:rgba(255,255,255,.92)}
+.trust span+span{border-inline-start:1px solid rgba(255,255,255,.22)}
+.trust svg{width:16px;height:16px;stroke:#BFE6D2}
+
+/* sections */
+section.block{margin-top:48px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:16px}
+.sec-head h2{font-size:21px;font-weight:800}
+.sec-head .sub{color:var(--ink-muted);font-size:13.5px;margin-top:2px}
+.more{color:var(--primary);font-weight:700;font-size:13.5px;text-decoration:none;min-height:40px;display:inline-flex;align-items:center}
+
+/* flagship: 1px border + soft shadow (was 2px shouty) */
+.flag{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--card-spacing);display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;box-shadow:var(--shadow-sm);transition:box-shadow 220ms var(--ease-out),transform 220ms var(--ease-out);cursor:pointer}
+.flag:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.flag .fic{width:56px;height:56px;border-radius:14px;background:var(--primary-soft);display:grid;place-items:center}
+.badge{display:inline-block;background:var(--warn-soft);color:var(--warn-ink);border-radius:999px;padding:2px 10px;font-size:11px;font-weight:700;margin-bottom:4px}
+.flag h3{font-size:17.5px;font-weight:800}
+.flag p{color:var(--ink-muted);font-size:13.5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:none;border-radius:10px;font-weight:700;cursor:pointer;transition:all 180ms var(--ease-out);white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--primary);color:#fff;min-height:40px;padding:0 22px;font-size:14px}
+.btn-primary:hover{background:var(--primary-strong)}
+
+/* tool cards: Card anatomy Header/Content/Footer with hairline footer */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--card-spacing);display:flex;flex-direction:column;box-shadow:var(--shadow-sm);transition:box-shadow 220ms var(--ease-out),transform 220ms var(--ease-out)}
+.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card .top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.card .cic2{width:46px;height:46px;border-radius:12px;background:var(--primary-soft);display:grid;place-items:center}
+.free{font-size:11px;color:var(--primary-strong);background:var(--primary-soft);border-radius:999px;padding:2px 9px;font-weight:700}
+.card h3{font-size:15.5px;font-weight:800;margin-bottom:4px}
+.card p{color:var(--ink-muted);font-size:13px;flex:1}
+.card .go{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);color:var(--primary);font-weight:700;font-size:13.5px;display:inline-flex;align-items:center;gap:4px;min-height:32px}
+.card .go svg{width:15px;height:15px;transition:transform 180ms var(--ease-out)}
+.card:hover .go svg{transform:translateX(-3px)}
+
+/* occasions */
+.occ{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.occ .o{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px var(--card-spacing);display:flex;justify-content:space-between;align-items:center;gap:10px;box-shadow:var(--shadow-sm)}
+.occ .o b{font-size:15px;display:block}
+.occ .o span{color:var(--ink-muted);font-size:12px}
+.occ .days{background:var(--warn-soft);color:var(--warn-ink);font-weight:800;border-radius:8px;padding:4px 10px;font-size:12.5px;white-space:nowrap}
+
+footer{border-top:1px solid var(--border);margin-top:48px;padding:20px 0 28px;color:var(--ink-muted);font-size:12.5px;text-align:center}
+.tag{display:inline-block;background:#FFF3CD;color:#856404;border:1px dashed #D9A406;border-radius:8px;padding:3px 12px;font-size:12px;margin-bottom:8px}
+.bottomnav{display:none}
+
+@media (max-width:760px){
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  .wrap{padding:0 16px}
+  nav.main{display:none}
+  .hero{padding:24px 20px 0;border-radius:var(--radius-lg)}
+  .hero-grid{grid-template-columns:1fr;gap:20px}
+  .hero h1{font-size:23px}
+  .btn-primary{min-height:48px;font-size:15px}
+  .grid{display:flex;overflow-x:auto;gap:12px;padding:4px 4px 12px;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -16px;padding-inline:16px}
+  .grid::-webkit-scrollbar{display:none}
+  .card{min-width:164px;max-width:164px;scroll-snap-align:start}
+  .occ{display:flex;overflow-x:auto;gap:12px;scrollbar-width:none;margin:0 -16px;padding:4px 16px 12px;scroll-snap-type:x mandatory}
+  .occ::-webkit-scrollbar{display:none}
+  .occ .o{min-width:232px;scroll-snap-align:start}
+  .flag{grid-template-columns:auto 1fr}
+  .flag .btn{grid-column:1/-1;width:100%}
+  .trust span{padding:10px 12px;font-size:12px}
+  .bottomnav{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;bottom:0;right:0;left:0;min-height:calc(64px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:var(--surface);border-top:1px solid var(--border);z-index:30;box-shadow:0 -4px 20px rgba(20,33,27,.06)}
+  .bottomnav button{background:none;border:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;color:var(--ink-muted);cursor:pointer;min-height:64px;position:relative}
+  .bottomnav button svg{width:23px;height:23px;stroke:var(--ink-muted)}
+  .bottomnav button.on{color:var(--primary-strong);font-weight:700}
+  .bottomnav button.on svg{stroke:var(--primary)}
+  .bottomnav button.on::before{content:"";position:absolute;top:0;width:28px;height:3px;border-radius:0 0 4px 4px;background:var(--primary)}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap appbar">
+  <div class="logo"><span class="logo-mark">د</span> دست‌افزار</div>
+  <nav class="main"><a href="#">ابزارها</a><a href="#">چرا دست‌افزار</a><a href="#">پرسش‌ها</a></nav>
+</div></header>
+
+<main class="wrap">
+  <nav class="cats">
+    <button class="cat on"><span class="cic"><svg class="ic" width="23" height="23" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>تاریخ و تقویم</button>
+    <button class="cat"><span class="cic"><svg class="ic" width="23" height="23" viewBox="0 0 24 24"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6"/></svg></span>فاکتورساز</button>
+    <button class="cat"><span class="cic"><svg class="ic" width="23" height="23" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 12h.01M18 12h.01"/></svg></span>مالی</button>
+    <button class="cat"><span class="cic"><svg class="ic" width="23" height="23" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M9 19h6"/></svg></span>متن و عدد</button>
+    <button class="cat"><span class="cic"><svg class="ic" width="23" height="23" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L6 21"/></svg></span>عکس</button>
+    <button class="cat"><span class="cic"><svg class="ic" width="23" height="23" viewBox="0 0 24 24"><path d="m12 3 2.7 5.8 6.3.7-4.6 4.3 1.2 6.2L12 17l-5.6 3 1.2-6.2L3 9.5l6.3-.7z"/></svg></span>محبوب‌ها</button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <h1>ابزارهای فارسی، دقیق و فوری — <em>بدون ثبت‌نام، بدون هزینه</em></h1>
+        <p>تقویم شمسی تعاملی، تبدیل تاریخ، محاسبه سن و به‌زودی فاکتورساز؛ نتیجه همان لحظه روی همه دستگاه‌ها.</p>
+      </div>
+      <div class="count"><div class="lbl">تا نوروز ۱۴۰۶</div>
+        <div class="nums"><div class="n"><b>۱۵۲</b><i>روز</i></div><div class="n"><b>۰۸</b><i>ساعت</i></div><div class="n"><b>۲۴</b><i>دقیقه</i></div></div>
+      </div>
+    </div>
+    <div class="conv">
+      <div class="fields">
+        <div class="field"><label>سال شمسی</label><input value="۱۴۰۵"></div>
+        <div class="field"><label>ماه</label><input value="۷"></div>
+        <div class="field"><label>روز</label><input value="۲۷"></div>
+      </div>
+      <div class="result">برابر است با دوشنبه — 2026/10/19 میلادی</div>
+      <div class="today">امروز: ۱۴۰۵/۰۷/۲۷ شمسی</div>
+    </div>
+    <div class="trust">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5z"/></svg>نتیجه فوری</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-5.5 8-5.5s6.5 1.5 8 5.5"/></svg>بدون ثبت‌نام</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/></svg>بدون ذخیره داده</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>همیشه شمسی</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="sec-head"><div><h2>ابزار پرچم‌دار</h2><div class="sub">کامل‌ترین ابزار دست‌افزار — پیشنهاد ما برای شروع</div></div></div>
+    <article class="flag">
+      <div class="fic"><svg class="ic" width="28" height="28" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
+      <div><span class="badge">پرچم‌دار</span><h3>تقویم شمسی تعاملی</h3><p>ماه به ماه بگرد، روی هر روز بزن: معادل میلادی، فاصله از امروز و مناسبت‌ها همان‌جا می‌آیند.</p></div>
+      <button class="btn btn-primary">شروع</button>
+    </article>
+  </section>
+
+  <section class="block">
+    <div class="sec-head"><div><h2>ابزارها</h2><div class="sub">رایگان و بدون ثبت‌نام — نتیجه همان لحظه</div></div><a class="more" href="#">مشاهده همه</a></div>
+    <div class="grid">
+      <article class="card"><div class="top"><div class="cic2"><svg class="ic" width="24" height="24" viewBox="0 0 24 24"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><span class="free">رایگان</span></div><h3>مبدل تاریخ</h3><p>شمسی به میلادی و برعکس، با روز هفته</p><span class="go">شروع <svg viewBox="0 0 24 24" fill="none" stroke="#0B6B4F" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5m6-7-7 7 7 7"/></svg></span></article>
+      <article class="card"><div class="top"><div class="cic2"><svg class="ic" width="24" height="24" viewBox="0 0 24 24"><path d="M4 21h16M5 21v-6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6"/><path d="M12 13V9M12 5h.01"/></svg></div><span class="free">رایگان</span></div><h3>محاسبه سن</h3><p>سن دقیق به سال، ماه و روز + تولد بعدی</p><span class="go">شروع <svg viewBox="0 0 24 24" fill="none" stroke="#0B6B4F" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5m6-7-7 7 7 7"/></svg></span></article>
+      <article class="card"><div class="top"><div class="cic2"><svg class="ic" width="24" height="24" viewBox="0 0 24 24"><path d="M8 3 4 7l4 4M4 7h16M16 21l4-4-4-4M20 17H4"/></svg></div><span class="free">رایگان</span></div><h3>فاصله دو تاریخ</h3><p>چند روز بین دو تاریخ؟ روز، هفته و ماه</p><span class="go">شروع <svg viewBox="0 0 24 24" fill="none" stroke="#0B6B4F" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5m6-7-7 7 7 7"/></svg></span></article>
+      <article class="card"><div class="top"><div class="cic2"><svg class="ic" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><span class="free">رایگان</span></div><h3>شمارش معکوس نوروز</h3><p>روز و ساعت مانده تا لحظه تحویل سال</p><span class="go">شروع <svg viewBox="0 0 24 24" fill="none" stroke="#0B6B4F" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5m6-7-7 7 7 7"/></svg></span></article>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="sec-head"><div><h2>مناسبت‌های پیش رو</h2><div class="sub">هیچ مناسبتی را از دست نده</div></div><a class="more" href="#">تقویم کامل</a></div>
+    <div class="occ">
+      <div class="o"><div><b>یلدا</b><span>۱۴۰۵/۰۹/۳۰</span></div><span class="days">۶۲ روز مانده</span></div>
+      <div class="o"><div><b>نوروز</b><span>۱۴۰۶/۰۱/۰۱</span></div><span class="days">۱۵۲ روز مانده</span></div>
+      <div class="o"><div><b>مهرگان</b><span>۱۴۰۶/۰۷/۱۶</span></div><span class="days">۳۵۷ روز مانده</span></div>
+    </div>
+  </section>
+</main>
+
+<footer><span class="tag">پروتوتایپ پولیش v3 — طبق Skill 22، هنوز وارد محصول نشده</span><br>دست‌افزار — ابزارهای فارسی رایگان</footer>
+
+<nav class="bottomnav">
+  <button class="on"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22v-8h6v8"/></svg>خانه</button>
+  <button><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>ابزارها</button>
+  <button><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>تقویم</button>
+  <button><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-5.5 8-5.5s6.5 1.5 8 5.5"/></svg>پنل</button>
+</nav>
+</body>
+</html>

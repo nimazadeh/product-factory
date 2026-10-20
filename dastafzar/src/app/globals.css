@@ -161,3 +161,41 @@ table.admin-table td,table.admin-table th{border-bottom:1px solid var(--line);pa
   .bn-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11.5px;color:var(--ink2);text-decoration:none;min-height:64px}
   .bn-item.is-active{color:var(--primary-ink);font-weight:700}
 }
+
+/* ===== v0.4.1 premium polish (Skill 22 — shadcn system) ===== */
+/* Token layer: semantic vars, ONE radius base, ONE card spacing, two shadows max */
+.landing{
+  --surface-2:#EEF3EF; --ring:#0B6B4F;
+  --radius:12px; --radius-sm:8px; --radius-lg:16px;
+  --card-spacing:20px;
+  --shadow-sm:0 1px 2px rgba(20,33,27,.05),0 4px 14px rgba(20,33,27,.05);
+  --shadow-lg:0 2px 4px rgba(20,33,27,.05),0 16px 40px rgba(20,33,27,.12);
+}
+:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+/* quieter top nav */
+.topbar nav a{padding:8px 12px;border-radius:var(--radius-sm);min-height:40px;transition:background 180ms var(--ease-out),color 180ms var(--ease-out)}
+.topbar nav a:hover{background:var(--surface-2);color:var(--ink)}
+/* category rail: gentle hover, token borders */
+.cat{transition:background 180ms var(--ease-out)}
+.cat:hover{background:var(--surface-2)}
+.cat-circle{border-width:1px;transition:border-color 180ms var(--ease-out),background 180ms var(--ease-out)}
+/* hero depth + converter focus ring (Field pattern) */
+.hero-green{box-shadow:var(--shadow-lg)}
+.conv-field input{transition:border-color 180ms var(--ease-out),box-shadow 180ms var(--ease-out)}
+.conv-field input:focus{outline:none;border-color:var(--ring);box-shadow:0 0 0 3px rgba(11,107,79,.18)}
+/* flagship: 1px border + soft shadow, lift on hover (was 2px shouty border) */
+.flag-card{border:1px solid var(--line);border-radius:var(--radius-lg);padding:var(--card-spacing);box-shadow:var(--shadow-sm);transition:box-shadow 220ms var(--ease-out),transform 220ms var(--ease-out)}
+.flag-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.flag-cta{min-height:40px;padding:8px 22px;font-size:14px}
+/* tool cards: Card anatomy — shared spacing, hairline footer, quiet lift */
+.tool-card{padding:var(--card-spacing);box-shadow:var(--shadow-sm);transition:box-shadow 220ms var(--ease-out),transform 220ms var(--ease-out),border-color 220ms var(--ease-out)}
+.tool-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.tool-go{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.tool-go svg{transition:transform 180ms var(--ease-out)}
+.tool-card:hover .tool-go svg{transform:translateX(-3px)}
+.occ-card{box-shadow:var(--shadow-sm)}
+/* bottom nav: active indicator bar (app feel) */
+.bn-item{position:relative}
+.bn-item.is-active::before{content:"";position:absolute;top:0;width:28px;height:3px;border-radius:0 0 4px 4px;background:var(--primary)}
+@media(max-width:760px){ .flag-cta{min-height:48px;font-size:15px} }
+@media(prefers-reduced-motion:reduce){ .flag-card,.tool-card,.tool-go svg{transition:none} }
