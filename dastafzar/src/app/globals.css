@@ -308,3 +308,45 @@ table.admin-table td,table.admin-table th{border-bottom:1px solid var(--line);pa
 .copy-btn svg{flex:none}
 @media(max-width:640px){.stat-tiles-4 .stat-tile{min-width:54px}.stat-tile b{font-size:21px}}
 @media(prefers-reduced-motion:reduce){.res-card{animation:none}.back-link svg{transition:none}}
+
+/* --- month occasions list (v0.7.0) --- */
+.month-occ{margin-top:18px;border-top:1px solid var(--border,#e5e7eb);padding-top:14px;text-align:right}
+.month-occ-title{font-size:15px;font-weight:800;margin:0 0 10px}
+.month-occ-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.month-occ-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--border,#e5e7eb);border-radius:12px;background:#fff}
+.month-occ-day{min-width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:#ecfdf5;color:#047857;font-weight:800;font-size:13px}
+.month-occ-name{flex:1;font-size:13.5px;line-height:1.7}
+.month-occ-badge{font-size:11px;font-weight:700;color:#b91c1c;background:#fef2f2;border:1px solid #fecaca;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.month-occ-empty{font-size:13px;color:#6b7280;margin:0}
+
+/* --- tools catalog page (v0.7.0) --- */
+.tools-page{padding:28px 16px 96px;background:#f8fafc;min-height:100dvh}
+.tools-page-inner{max-width:900px;margin:0 auto}
+.tools-page h1{font-size:28px;font-weight:900;margin:14px 0 6px}
+.tools-page-lead{color:#475569;margin:0 0 20px}
+.tools-search{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #e2e8f0;border-radius:14px;padding:0 14px;height:50px;margin-bottom:12px}
+.tools-search:focus-within{border-color:#059669;box-shadow:0 0 0 3px #05966922}
+.tools-search input{border:0;outline:0;flex:1;font:inherit;background:transparent}
+.tools-cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tools-chip{border:1.5px solid #e2e8f0;background:#fff;border-radius:999px;padding:8px 16px;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+.tools-chip.active{background:#0b7a4b;color:#fff;border-color:#0b7a4b}
+.tools-grid-page{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.tool-card-page{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:16px;text-decoration:none;color:inherit;min-height:76px}
+.tcp-icon{width:44px;height:44px;border-radius:12px;background:#ecfdf5;color:#047857;display:grid;place-items:center;flex:none}
+.tcp-body{display:flex;flex-direction:column;gap:2px;flex:1}
+.tcp-body small{color:#64748b}
+.tcp-badge{font-size:11px;font-weight:800;color:#047857;background:#ecfdf5;padding:3px 8px;border-radius:999px}
+.tcp-arrow{color:#94a3b8}
+.tools-empty{color:#64748b;background:#fff;border:1px dashed #cbd5e1;border-radius:14px;padding:18px;text-align:center}
+
+/* --- accordion (single-open, v0.7.0) --- */
+.faq-item{border:1px solid #e2e8f0;border-radius:14px;background:#fff;margin-bottom:10px;overflow:hidden}
+.faq-q{margin:0}
+.faq-q button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:none;border:0;padding:16px;min-height:56px;font:inherit;font-weight:800;text-align:right;cursor:pointer;color:inherit}
+.faq-chev{transition:transform .25s ease;color:#059669;flex:none}
+.faq-item.open .faq-chev{transform:rotate(180deg)}
+.faq-panel-inner{padding:0 16px 16px;color:#475569;line-height:2}
+.faq-panel-inner p{margin:0}
+@media (prefers-reduced-motion: reduce){.faq-chev{transition:none}}
+.tools-cta-row{text-align:center;margin:16px 0 0}
+.tools-cta{display:inline-flex;align-items:center;gap:8px;background:#0b7a4b;color:#fff;font-weight:800;padding:12px 22px;border-radius:999px;text-decoration:none;min-height:48px}

@@ -6,7 +6,7 @@ import {
   Star, Zap, UserX, ShieldCheck, CalendarClock, ArrowLeft,
 } from "lucide-react";
 import Converter from "@/components/Converter";
-import FaqItem from "@/components/FaqItem";
+import FaqAccordion from "@/components/FaqAccordion";
 import NowruzPill from "@/components/NowruzPill";
 import OccasionsStrip from "@/components/OccasionsStrip";
 import BottomNav from "@/components/BottomNav";
@@ -46,13 +46,13 @@ export default function Home() {
       <header className="topbar">
         <span className="brand"><span className="brand-mark">د</span> دست‌افزار</span>
         <nav aria-label="ناوبری اصلی">
-          <Link href="#tools">ابزارها</Link><Link href="#why">چرا دست‌افزار</Link><Link href="#faq">پرسش‌ها</Link>
+          <Link href="/tools">ابزارها</Link><Link href="#why">چرا دست‌افزار</Link><Link href="#faq">پرسش‌ها</Link>
         </nav>
       </header>
 
       <nav className="cat-rail" aria-label="دسته‌بندی ابزارها">
         {CATS.map(({ Icon, label, active }) => (
-          <Link key={label} href="#tools" className={`cat${active ? " is-active" : ""}`} aria-current={active ? "true" : undefined}>
+          <Link key={label} href="/tools" className={`cat${active ? " is-active" : ""}`} aria-current={active ? "true" : undefined}>
             <span className="cat-circle"><Icon size={23} /></span>{label}
           </Link>
         ))}
@@ -100,10 +100,10 @@ export default function Home() {
             <h2>ابزارها</h2>
             <p className="sec-sub">رایگان و بدون ثبت‌نام — نتیجه همان لحظه</p>
           </div>
-          <Link className="more-link" href="#tools">مشاهده همه</Link>
+          <Link className="more-link" href="/tools">مشاهده همه ابزارها</Link>
         </div>
         <div className="tool-grid">
-          {TOOLS.map(({ Icon, name, href, desc, tag }) => (
+          {TOOLS.slice(0, 4).map(({ Icon, name, href, desc, tag }) => (
             <Link key={name} href={href} className="tool-card">
               <span className="tool-icon"><Icon size={25} aria-hidden /></span>
               <span className={`tool-tag ${tag === "به‌زودی" ? "pro" : ""}`}>{tag}</span>
@@ -112,6 +112,7 @@ export default function Home() {
             </Link>
           ))}
         </div>
+        <p className="tools-cta-row"><Link className="tools-cta" href="/tools">دیدن همه ابزارها <ArrowLeft size={16} aria-hidden /></Link></p>
       </section></Reveal>
 
       <Reveal><OccasionsStrip /></Reveal>
@@ -128,9 +129,7 @@ export default function Home() {
 
       <Reveal><section id="faq" className="faq">
         <h2>پرسش‌های پرتکرار</h2>
-        <FaqItem q="مبدل تاریخ دست‌افزار چقدر دقیق است؟" a="بر پایه الگوریتم رسمی جلالی (jalaali) — همان مبنای تقویم رسمی کشور، با تست روی مرز نوروز و سال‌های کبیسه." />
-        <FaqItem q="ابزارها رایگان‌اند؟" a="ابزارهای پایه همیشه رایگان‌اند. خروجی‌های تخصصی (مثل فاکتور بدون واترمارک) نسخه حرفه‌ای دارند." />
-        <FaqItem q="نیاز به ثبت‌نام دارم؟" a="نه. همه ابزارهای پایه بدون حساب کار می‌کنند و داده‌ای از شما ذخیره نمی‌شود." />
+        <FaqAccordion />
       </section></Reveal>
 
       <footer className="footer">دست‌افزار — ساخته‌شده با دقت در Product Factory · داده‌ای از شما ذخیره نمی‌شود</footer>

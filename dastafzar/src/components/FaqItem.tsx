@@ -1,18 +1,19 @@
 "use client";
-import { useId, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-/** Accessible animated FAQ item (button + region, smooth height via grid-rows). */
-export default function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  const id = useId();
+export default function FaqItem({ q, a, open, onToggle, id }: {
+  q: string; a: string; open: boolean; onToggle: () => void; id: string;
+}) {
   return (
-    <div className="faq-item" data-open={open}>
-      <button type="button" className="faq-q" aria-expanded={open} aria-controls={id} onClick={() => setOpen((v) => !v)}>
-        <span>{q}</span><ChevronDown size={19} className="faq-chevron" aria-hidden="true" />
-      </button>
-      <div className="faq-a" id={id} role="region">
-        <div><p>{a}</p></div>
+    <div className={`faq-item${open ? " open" : ""}`}>
+      <h3 className="faq-q">
+        <button type="button" id={`${id}-btn`} aria-expanded={open} aria-controls={`${id}-panel`} onClick={onToggle}>
+          <span>{q}</span>
+          <ChevronDown size={18} className="faq-chev" aria-hidden />
+        </button>
+      </h3>
+      <div id={`${id}-panel`} role="region" aria-labelledby={`${id}-btn`} className="faq-panel" hidden={!open}>
+        <div className="faq-panel-inner"><p>{a}</p></div>
       </div>
     </div>
   );
