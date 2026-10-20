@@ -224,3 +224,61 @@ table.admin-table td,table.admin-table th{border-bottom:1px solid var(--line);pa
   .conv-result,.result-big{animation:none}
   html{scroll-behavior:auto}
 }
+
+/* ===== v0.5.0 calendar flagship polish (Skill 22) ===== */
+.cal-head{margin-bottom:12px}
+.cal-title{font-size:20px;font-weight:800}
+.pg-btn{transition:background 180ms var(--ease-out),border-color 180ms var(--ease-out),transform 120ms var(--ease-out)}
+.pg-btn:hover{background:var(--accent);border-color:var(--primary)}
+.pg-btn:active{transform:scale(.94)}
+.cal-today-row{display:flex;justify-content:center}
+.cal-today-btn{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:8px 16px;border-radius:99px;border:1px solid var(--primary);background:var(--accent);color:var(--primary-ink);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;transition:background 180ms var(--ease-out),transform 120ms var(--ease-out)}
+.cal-today-btn:hover{background:#D9EDDF}
+.cal-today-btn:active{transform:scale(.97)}
+.cal-wd{font-weight:700;color:var(--ink2)}
+.cal-day{transition:background 160ms var(--ease-out),transform 110ms var(--ease-out),border-color 160ms var(--ease-out),box-shadow 160ms var(--ease-out)}
+.cal-day:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm,0 2px 8px rgba(20,33,27,.08))}
+.cal-day.fri:not(.sel){color:#B3402A}
+.cal-day.has-occ:not(.sel){background:#FDF3E2}
+.cal-day.has-occ:hover{background:#FBEEDC}
+.cal-grid{animation:cal-in 240ms var(--ease-out)}
+.cal-anim-next{animation:cal-from-end 240ms var(--ease-out)}
+.cal-anim-prev{animation:cal-from-start 240ms var(--ease-out)}
+@keyframes cal-in{from{opacity:.3}to{opacity:1}}
+@keyframes cal-from-end{from{opacity:.2;transform:translateX(-10px)}to{opacity:1;transform:none}}
+@keyframes cal-from-start{from{opacity:.2;transform:translateX(10px)}to{opacity:1;transform:none}}
+.cal-facts{text-align:center;color:var(--ink2);font-size:12.5px;margin:12px 0 0}
+.cal-result{display:grid;gap:5px;justify-items:center}
+.cal-result-date{font-size:24px;font-weight:800;line-height:1.4}
+.cal-result-sub{font-size:15px;color:var(--ink2)}
+.cal-occ-badge{display:inline-flex;align-items:center;gap:6px;background:#FBEEDC;color:#9A4517;border-radius:99px;padding:4px 13px;font-size:13.5px;font-weight:700}
+.cal-result-diff{font-size:14px;font-weight:700;color:var(--primary-ink)}
+@media(prefers-reduced-motion:reduce){.cal-grid,.cal-anim-next,.cal-anim-prev{animation:none}.cal-day:hover{transform:none}}
+
+/* ===== v0.5.0 admin polish: Field, Skeleton, Empty, states (Skill 22) ===== */
+.field{display:grid;gap:6px;margin-bottom:14px;text-align:start}
+.field label{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--ink)}
+.field input{width:100%;min-height:50px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;padding:10px 14px;transition:border-color 180ms var(--ease-out),box-shadow 180ms var(--ease-out)}
+.field input:focus{outline:none;border-color:var(--ring,#0B6B4F);box-shadow:0 0 0 3px rgba(11,107,79,.18)}
+.field input[aria-invalid="true"]{border-color:#C0362C;box-shadow:0 0 0 3px rgba(192,54,44,.14)}
+.login-box input:not(.field input){margin-bottom:0}
+.btn-main{display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-main:disabled{opacity:.55;cursor:wait}
+.copy-btn{display:inline-flex;align-items:center;gap:6px}
+.copy-btn:disabled{opacity:.5;cursor:not-allowed}
+.switch:disabled{opacity:.55;cursor:wait}
+.spin{animation:spin 900ms linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.err-hero{text-align:center;color:#B3261E;margin:0 0 8px}
+/* Skeleton shimmer — calm, never flashing */
+.skel{display:block;height:14px;border-radius:7px;background:linear-gradient(100deg,var(--bg) 40%,var(--accent) 50%,var(--bg) 60%);background-size:200% 100%;animation:shimmer 1400ms ease-in-out infinite}
+.skel-sm{width:45%;margin-bottom:10px}.skel-lg{width:60%;height:26px}
+.skel-stack{display:grid;gap:12px;padding:6px 0}
+@keyframes shimmer{from{background-position:180% 0}to{background-position:-80% 0}}
+.empty-state{display:flex;align-items:center;gap:8px;color:var(--ink2);background:var(--bg);border:1px dashed var(--line);border-radius:12px;padding:16px;margin:0;font-size:14px;line-height:1.9}
+.usage-track{flex:1;background:var(--bg);border-radius:99px;height:10px;margin:0 12px;overflow:hidden}
+.usage-fill{display:block;height:10px;border-radius:99px;background:var(--primary);transition:width 600ms var(--ease-out)}
+.daily-chart{display:flex;gap:3px;align-items:flex-end;height:90px}
+.daily-bar{flex:1;background:var(--primary);border-radius:3px 3px 0 0;min-height:3px;transition:height 600ms var(--ease-out)}
+.admin-panel h2{display:flex;align-items:center;gap:8px}
+@media(prefers-reduced-motion:reduce){.skel,.spin{animation:none}.usage-fill,.daily-bar{transition:none}}
