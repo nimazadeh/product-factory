@@ -376,3 +376,12 @@ table.admin-table td,table.admin-table th{border-bottom:1px solid var(--line);pa
 @media (prefers-reduced-motion: reduce){
   .cal-day:active,.pg-btn:active,.cal-today-btn:active,.tools-chip:active,.copy-btn:active,.tool-card:active,.flag-card:active,.cal-panel-item:active,.date-chip:active{transform:none}
 }
+
+/* --- calendar winner (v0.10.0): hybrid B(warm circles+hero) x A(panel) --- */
+.cal-grid-circles .cal-day{height:52px;min-height:52px;max-width:52px;width:100%;margin:0 auto;border-radius:50%}
+.cal-hero{display:flex;gap:16px;align-items:center;background:#fdf6ec;border:1px solid #f3e3c3;border-radius:18px;padding:16px;margin-top:14px;text-align:right}
+.cal-hero-day{font-size:46px;font-weight:900;color:#b45309;line-height:1;min-width:64px;text-align:center}
+.cal-hero-body{display:flex;flex-direction:column;gap:3px;align-items:flex-start}
+.cal-hero-body strong{font-size:15.5px}
+.cal-hero-sub,.cal-hero-none{font-size:13px;color:#6b5636;line-height:1.9}
+@media(max-width:560px){.cal-hero-day{font-size:38px;min-width:52px}.cal-grid-circles .cal-day{height:44px;min-height:44px;max-width:44px}}

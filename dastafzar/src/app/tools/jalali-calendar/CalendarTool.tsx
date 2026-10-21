@@ -69,7 +69,7 @@ export default function CalendarTool() {
         <button type="button" className="pg-btn" onClick={() => move(1)} aria-label="ماه بعد"><ChevronLeft size={19} /></button>
       </div>
       {today && <div className="cal-today-row"><button type="button" className="cal-today-btn" onClick={() => { setDir(0); setCursor({ jy: today.jy, jm: today.jm }); setSelected(today); }}><CalendarHeart size={16} aria-hidden /> امروز: {faDate(today)}</button></div>}
-      <div key={`${cursor.jy}-${cursor.jm}`} className={`cal-grid cal-anim-${dir > 0 ? "next" : dir < 0 ? "prev" : "none"}`} role="grid" aria-label={`تقویم ${MONTHS_FA[cursor.jm - 1]} ${cursor.jy}`}>
+      <div key={`${cursor.jy}-${cursor.jm}`} className={`cal-grid cal-grid-circles cal-anim-${dir > 0 ? "next" : dir < 0 ? "prev" : "none"}`} role="grid" aria-label={`تقویم ${MONTHS_FA[cursor.jm - 1]} ${cursor.jy}`}>
         {WEEKDAYS_FA.map((d) => <span key={d} className="cal-wd">{d.slice(0, 2)}</span>)}
         {Array.from({ length: cells.start }).map((_, i) => <span key={`e${i}`} />)}
         {cells.days.map((d) => {
@@ -87,11 +87,18 @@ export default function CalendarTool() {
       </div>
       <p className="cal-facts">{MONTHS_FA[cursor.jm - 1]} {faNum(cursor.jy)} — {faNum(cells.days.length)} روز</p>
       {selInfo && selected && (
-        <div className="result-big cal-result" role="status">
-          <span className="cal-result-date">{faDate(selected)}</span>
-          <span className="cal-result-sub">{selInfo.gText}</span>
-          {selInfo.occ && <span className="cal-occ-badge"><Sparkles size={15} aria-hidden /> مناسبت: {selInfo.occ.title}{selInfo.occ.holiday ? " — تعطیل رسمی" : ""}</span>}
-          <span className="cal-result-diff">{selInfo.diff === 0 ? "همین امروز است" : `فاصله از امروز: ${faNum(selInfo.diff)} روز`}</span>
+        <div className="cal-hero" role="status">
+          <span className="cal-hero-day">{faNum(selected.jd)}</span>
+          <span className="cal-hero-body">
+            <strong>{faDate(selected)} — {selInfo.gText.split(" — ")[0]}</strong>
+            <span className="cal-hero-sub">{selInfo.gText}</span>
+            {selInfo.occ ? (
+              <span className="cal-occ-badge"><Sparkles size={15} aria-hidden /> {selInfo.occ.title}{selInfo.occ.holiday ? " · تعطیل رسمی" : ""}</span>
+            ) : (
+              <span className="cal-hero-none">برای این روز مناسبتی ثبت نشده است.</span>
+            )}
+            <span className="cal-result-diff">{selInfo.diff === 0 ? "همین امروز است" : `فاصله از امروز: ${faNum(selInfo.diff)} روز`}</span>
+          </span>
         </div>
       )}
     </div>
