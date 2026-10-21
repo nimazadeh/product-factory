@@ -1,0 +1,10 @@
+node_modules
+.next
+api/node_modules
+api/dist
+screenshots
+test-results
+.git
+*.zip
+.env
+api/.env
