@@ -12,16 +12,14 @@ import OccasionsStrip from "@/components/OccasionsStrip";
 import BottomNav from "@/components/BottomNav";
 import Reveal from "@/components/Reveal";
 import CardSample from "@/components/CardSample";
+import { TOOLS as TOOL_REGISTRY } from "@/lib/tools-data";
 
-interface Tool { Icon: ComponentType<{ size?: number | string; className?: string }>; name: string; href: string; desc: string; tag: string }
-const TOOLS: Tool[] = [
-  { Icon: ArrowLeftRight, name: "مبدل تاریخ", href: "/tools/date-converter", desc: "شمسی به میلادی و برعکس، با روز هفته", tag: "رایگان" },
-  { Icon: Cake, name: "محاسبه سن", href: "/tools/age-calculator", desc: "سن دقیق به سال، ماه و روز + تولد بعدی", tag: "رایگان" },
-  { Icon: MoveHorizontal, name: "فاصله دو تاریخ", href: "/tools/date-difference", desc: "چند روز بین دو تاریخ؟ روز، هفته و ماه", tag: "رایگان" },
-  { Icon: Hourglass, name: "شمارش معکوس نوروز", href: "/tools/nowruz-countdown", desc: "روز و ساعت مانده تا لحظه تحویل سال", tag: "رایگان" },
-  { Icon: FileText, name: "فاکتورساز حرفه‌ای", href: "#tools", desc: "فاکتور فارسی با خروجی تمیز برای چاپ", tag: "به‌زودی" },
-  { Icon: Calculator, name: "عدد به حروف", href: "#tools", desc: "برای چک، قرارداد و فاکتور", tag: "به‌زودی" },
-];
+// Single source of truth: src/lib/tools-data.ts — a new tool is added THERE
+// once and appears in the landing preview, /tools catalog and future nav.
+const TOOL_ICONS: Record<string, ComponentType<{ size?: number | string; className?: string }>> = {
+  "date-converter": ArrowLeftRight, "age-calculator": Cake, "date-difference": MoveHorizontal,
+  "nowruz-countdown": Hourglass, "jalali-calendar": CalendarCheck2,
+};
 
 const CATS = [
   { Icon: CalendarDays, label: "تاریخ و تقویم", active: true },
@@ -59,17 +57,11 @@ export default function Home() {
         ))}
       </nav>
 
-      <section className="hero hero-green">
-        <div className="hero-main">
-          <div className="hero-copy">
-            <h1>ابزارهای فارسی، دقیق و فوری — <em>بدون ثبت‌نام، بدون هزینه</em></h1>
-            <p className="hero-sub">تقویم شمسی تعاملی، تبدیل تاریخ، محاسبه سن و به‌زودی فاکتورساز؛ نتیجه همان لحظه روی همه دستگاه‌ها.</p>
-          </div>
-          <NowruzPill />
-        </div>
-        <div className="hero-converter">
-          <Converter />
-        </div>
+      <section className="lvb-hero">
+        <h1>هر تاریخ و تقویمی،<br />همین‌جا و همین حالا</h1>
+        <p>مبدل، تقویم کامل شمسی با همه مناسبت‌ها، محاسبه سن — رایگان، بدون ثبت‌نام.</p>
+        <div className="lvb-card"><Converter /></div>
+        <NowruzPill />
         <div className="trust-bar" role="list" aria-label="ویژگی‌های دست‌افزار">
           {TRUST.map(({ Icon, label }) => (
             <span key={label} className="trust-item" role="listitem"><Icon size={17} aria-hidden />{label}</span>
@@ -77,41 +69,20 @@ export default function Home() {
         </div>
       </section>
 
-      <Reveal><section className="flagship" aria-label="ابزار پرچم‌دار">
-        <div className="sec-head">
-          <div>
-            <h2>ابزار پرچم‌دار</h2>
-            <p className="sec-sub">کامل‌ترین ابزار دست‌افزار — پیشنهاد ما برای شروع</p>
-          </div>
-        </div>
-        <Link href="/tools/jalali-calendar" className="flag-card">
-          <span className="flag-icon"><CalendarCheck2 size={29} aria-hidden /></span>
-          <span className="flag-body">
-            <span className="flag-badge">پرچم‌دار</span>
-            <span className="flag-title">تقویم شمسی تعاملی</span>
-            <span className="flag-desc">ماه به ماه بگرد، روی هر روز بزن: معادل میلادی، فاصله از امروز و مناسبت‌ها همان‌جا می‌آیند.</span>
-          </span>
-          <span className="flag-cta">شروع</span>
-        </Link>
-      </section></Reveal>
-
-      <Reveal><section id="tools" className="tools">
+      <Reveal><section className="tools lvb-tools" aria-label="ابزارها">
         <div className="sec-head">
           <div>
             <h2>ابزارها</h2>
-            <p className="sec-sub">رایگان و بدون ثبت‌نام — نتیجه همان لحظه</p>
+            <p className="sec-sub">نتیجه زنده روی هر کارت — رایگان و بدون ثبت‌نام</p>
           </div>
           <Link className="more-link" href="/tools">مشاهده همه ابزارها</Link>
         </div>
-        <div className="tool-grid">
-          {TOOLS.slice(0, 4).map(({ Icon, name, href, desc, tag }) => (
-            <Link key={name} href={href} className="tool-card">
-              <span className="tool-icon"><Icon size={25} aria-hidden /></span>
-              <span className={`tool-tag ${tag === "به‌زودی" ? "pro" : ""}`}>{tag}</span>
-              <h3>{name}</h3><p>{desc}</p><CardSample slug={href.replace('/tools/', '')} />
-              <span className="tool-go">شروع <ArrowLeft size={15} aria-hidden /></span>
-            </Link>
-          ))}
+        <div className="lvb-strip">
+          {TOOL_REGISTRY.map((t) => { const Icon = TOOL_ICONS[t.slug] ?? CalendarDays; return (
+            <Link key={t.slug} href={`/tools/${t.slug}`} className="lvb-item">
+              <span className="lvb-icon"><Icon size={26} aria-hidden /></span>
+              <strong>{t.title}</strong><small>{t.short}</small><CardSample slug={t.slug} />
+            </Link> ); })}
         </div>
         <p className="tools-cta-row"><Link className="tools-cta" href="/tools">دیدن همه ابزارها <ArrowLeft size={16} aria-hidden /></Link></p>
       </section></Reveal>
