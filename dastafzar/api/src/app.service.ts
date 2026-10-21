@@ -9,6 +9,7 @@ const TOOLS = [
   { slug: "age-calculator", title: "محاسبه سن" },
   { slug: "date-difference", title: "فاصله دو تاریخ" },
   { slug: "nowruz-countdown", title: "شمارش معکوس نوروز" },
+  { slug: "invoice-maker", title: "فاکتورساز حرفه‌ای" },
 ];
 
 @Injectable()

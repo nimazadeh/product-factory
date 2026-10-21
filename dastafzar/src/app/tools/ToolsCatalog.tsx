@@ -1,13 +1,13 @@
 "use client";
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Search, ArrowUpLeft, CalendarDays, Cake, CalendarRange, Sparkles, Shuffle } from "lucide-react";
+import { Search, ArrowUpLeft, CalendarDays, Cake, CalendarRange, Sparkles, Shuffle, FileText } from "lucide-react";
 import type { ToolEntry } from "@/lib/tools-data";
 import { TOOL_CATEGORIES } from "@/lib/tools-data";
 
 const ICONS: Record<string, typeof CalendarDays> = {
   "date-converter": Shuffle, "age-calculator": Cake, "date-difference": CalendarRange,
-  "nowruz-countdown": Sparkles, "jalali-calendar": CalendarDays,
+  "nowruz-countdown": Sparkles, "jalali-calendar": CalendarDays, "invoice-maker": FileText,
 };
 
 export default function ToolsCatalog({ tools }: { tools: ToolEntry[] }) {

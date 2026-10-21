@@ -18,7 +18,7 @@ import { TOOLS as TOOL_REGISTRY } from "@/lib/tools-data";
 // once and appears in the landing preview, /tools catalog and future nav.
 const TOOL_ICONS: Record<string, ComponentType<{ size?: number | string; className?: string }>> = {
   "date-converter": ArrowLeftRight, "age-calculator": Cake, "date-difference": MoveHorizontal,
-  "nowruz-countdown": Hourglass, "jalali-calendar": CalendarCheck2,
+  "nowruz-countdown": Hourglass, "jalali-calendar": CalendarCheck2, "invoice-maker": FileText,
 };
 
 const CATS = [
